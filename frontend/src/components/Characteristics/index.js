@@ -1,81 +1,101 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // import { Container } from './styles';
 
-export default function Characteristics() {
+export default function Characteristics({
+  totalCaracteristicas,
+  setTotalCaracteristicas,
+  pontosDeExperiencia,
+}) {
+  const [pontosDeVida, setPontosDeVida] = useState(1);
+  const [pontosDeMagia, setPontosDeMagia] = useState(1);
+  const [vidaPerdida, setVidaPerdida] = useState(0);
+  const [magiaPerdida, setMagiaPerdida] = useState(0);
+  const attributes = [
+    'Força',
+    'Habilidade',
+    'Resistência',
+    'Armadura',
+    'Poder De Fogo',
+  ];
+
+  function caracteristicas(attributeValue) {
+    setTotalCaracteristicas(0);
+
+    let pontosGastosAtualmente = 5;
+
+    if (attributeValue >= 0 && attributeValue <= 5) {
+      setTotalCaracteristicas(totalCaracteristicas + attributeValue);
+    } else if (attributeValue > 5) {
+      let pes = attributeValue - pontosGastosAtualmente;
+
+      if (attributeValue > 5 && attributeValue <= 10)
+        setTotalCaracteristicas(
+          totalCaracteristicas + pontosGastosAtualmente + pes * 2
+        );
+      if (attributeValue > 10 && attributeValue <= 15) {
+        pes = attributeValue - 10;
+
+        pontosGastosAtualmente = 15;
+
+        setTotalCaracteristicas(
+          totalCaracteristicas + pontosGastosAtualmente + pes * 3
+        );
+      }
+      if (attributeValue > 15 && attributeValue <= 20) {
+        pes = attributeValue - 15;
+
+        pontosGastosAtualmente = 30;
+
+        setTotalCaracteristicas(
+          totalCaracteristicas + pontosGastosAtualmente + pes * 5
+        );
+      }
+      if (attributeValue > 20) {
+        pes = attributeValue - 20;
+
+        pontosGastosAtualmente = 55;
+
+        setTotalCaracteristicas(
+          totalCaracteristicas + pontosGastosAtualmente + pes * 10
+        );
+      }
+    }
+  }
+
   return (
     <div className="caracteristicas col-xs-12 col-sm-6">
       <h2>Características</h2>
-      <div className="form-group fundo has-feedback">
-        <label htmlFor="">Força</label>
-        <input
-          className=""
-          type="number"
-          name="forca"
-          placeholder="0"
-          min="0"
-          max="999"
-          ng-model="forca"
-          ng-change="caracteristicas()"
-        />
-        {/* <span ng-show="maximo(forca) && pontosDeExperiencia == 0" className="form-control alert-danger">{{mensagemMaximo}}</span> */}
-      </div>
-      <div className="form-group fundo has-feedback">
-        <label htmlFor="">Habilidade</label>
-        <input
-          className=""
-          type="number"
-          name="habilidade"
-          placeholder="0"
-          min="0"
-          max="999"
-          ng-model="habilidade"
-          ng-change="caracteristicas()"
-        />
-        {/* <span ng-show="maximo(habilidade) && pontosDeExperiencia == 0" className="form-control alert-danger">{{mensagemMaximo}}</span> */}
-      </div>
-      <div className="form-group fundo has-feedback">
-        <label htmlFor="">Resistência</label>
-        <input
-          className=""
-          type="number"
-          namm="resistencia"
-          placeholder="0"
-          min="0"
-          max="999"
-          ng-model="resistencia"
-          ng-change="caracteristicas()"
-        />
-        {/* <span ng-show="maximo(resistencia) && pontosDeExperiencia == 0" className="form-control alert-danger">{{mensagemMaximo}}</span> */}
-      </div>
-      <div className="form-group fundo has-feedback">
-        <label htmlFor="">Armadura</label>
-        <input
-          className=""
-          type="number"
-          name="armadura"
-          placeholder="0"
-          min="0"
-          max="999"
-          ng-model="armadura"
-          ng-change="caracteristicas()"
-        />
-        {/* <span ng-show="maximo(armadura) && pontosDeExperiencia == 0" className="form-control alert-danger">{{mensagemMaximo}}</span> */}
-      </div>
-      <div className="form-group fundo has-feedback">
-        <label htmlFor="">Poder de fogo</label>
-        <input
-          className=""
-          type="number"
-          name="poderDeFogo"
-          placeholder="0"
-          min="0"
-          max="999"
-          ng-model="poderDeFogo"
-          ng-change="caracteristicas()"
-        />
-        {/* <span ng-show="maximo(poderDeFogo) && pontosDeExperiencia == 0" className="form-control alert-danger">{{mensagemMaximo}}</span> */}
-      </div>
+
+      {attributes.map(attribute => {
+        let attributeValue = 0;
+
+        return (
+          <div key={attribute} className="form-group fundo has-feedback">
+            <label htmlFor="">{attribute}</label>
+
+            <input
+              className=""
+              type="number"
+              placeholder="0"
+              min="0"
+              max="999"
+              onChange={event => {
+                attributeValue = event.target.value;
+
+                caracteristicas(attributeValue);
+              }}
+            />
+
+            {attributeValue > 5 && pontosDeExperiencia === 0 ? (
+              <span className="form-control alert-danger">
+                Máximo de 5 para recém-criados
+              </span>
+            ) : null}
+          </div>
+        );
+      })}
+
       <div className="pontos">
         <div className="form-group fundo">
           <label htmlFor="">

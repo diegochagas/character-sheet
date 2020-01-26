@@ -10,6 +10,10 @@ import { Container } from './styles';
 
 export default function Home() {
   const [points, setPoints] = useState(0);
+  const [totalCaracteristicas, setTotalCaracteristicas] = useState(0);
+  const [totalVantagens, setTotalVantagens] = useState(0);
+  const [totalDesvantagens, setTotalDesvantagens] = useState(0);
+  const [pontosDeExperiencia, setPontosDeExperiencia] = useState(0);
 
   return (
     <Container
@@ -17,10 +21,21 @@ export default function Home() {
       ng-controller="FichaDePersonagem"
     >
       <div className="ficha">
-        <Header points={points} setPoints={setPoints} />
+        <Header
+          points={points}
+          totalCaracteristicas={totalCaracteristicas}
+          totalVantagens={totalVantagens}
+          totalDesvantagens={totalDesvantagens}
+          pontosDeExperiencia={pontosDeExperiencia}
+          setPoints={setPoints}
+        />
 
         <form className="row" name="ficha" noValidate>
-          <Characteristics points={points} setPoints={setPoints} />
+          <Characteristics
+            totalCaracteristicas={totalCaracteristicas}
+            setTotalCaracteristicas={setTotalCaracteristicas}
+            pontosDeExperiencia={pontosDeExperiencia}
+          />
 
           <Skills points={points} setPoints={setPoints} />
 

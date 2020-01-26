@@ -2,7 +2,14 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-export default function Header() {
+export default function Header({
+  points,
+  setPoints,
+  totalCaracteristicas,
+  totalVantagens,
+  totalDesvantagens,
+  pontosDeExperiencia,
+}) {
   const pontuacao = [
     { value: 4, name: 'Pessoa comum' },
     { value: 5, name: 'Novato' },
@@ -10,6 +17,12 @@ export default function Header() {
     { value: 10, name: 'Campeão' },
     { value: 12, name: 'Lenda' },
   ];
+
+  function pontosDePersonagem(experiencia) {
+    let pontos = 0;
+    if (experiencia !== undefined) pontos = Math.floor(experiencia / 10);
+    return pontos;
+  }
 
   return (
     <header className="App-header header-ficha col-xs-12">
@@ -34,7 +47,7 @@ export default function Header() {
           aria-hidden="true"
         />
 
-        <label className="" htmlFor="nome">
+        <label className="" htmlFor="pontos">
           Pontos
         </label>
 
@@ -45,14 +58,26 @@ export default function Header() {
           placeholder="0"
           min="0"
           max="999"
-          value="{{pontuacao.selectedOption.value - totalCaracteristicas - totalVantagens + (totalDesvantagens*(-1)) + pontosDePersonagem(pontosDeExperiencia)}}"
+          value={
+            points -
+            totalCaracteristicas -
+            totalVantagens +
+            totalDesvantagens * -1 +
+            pontosDePersonagem(pontosDeExperiencia)
+          }
           disabled
         />
 
         <label className="" htmlFor="nome">
           Escala
         </label>
-        <select className="" name="pontuacao" required>
+
+        <select
+          className=""
+          name="pontuacao"
+          required
+          onChange={event => setPoints(event.target.value)}
+        >
           <option value="">Pontos</option>
 
           {pontuacao.map(option => (
@@ -62,9 +87,21 @@ export default function Header() {
           ))}
         </select>
       </div>
-      {/* <span ng-show="ficha.nome.$touched && ficha.nome.$error.required" className="form-control alert-danger">Nome obrigatório</span>
-              <span ng-show="ficha.nome.$touched && ficha.nome.$error.maxlength" className="form-control alert-danger">Máximo de 255 caracteres</span>
-              <span ng-show="minimoPontos()" className="form-control alert-danger">Mínimo de 0 pontos</span> */}
+      <span
+        ng-show="ficha.nome.$touched && ficha.nome.$error.required"
+        className="form-control alert-danger"
+      >
+        Nome obrigatório
+      </span>
+      <span
+        ng-show="ficha.nome.$touched && ficha.nome.$error.maxlength"
+        className="form-control alert-danger"
+      >
+        Máximo de 255 caracteres
+      </span>
+      <span ng-show="minimoPontos()" className="form-control alert-danger">
+        Mínimo de 0 pontos
+      </span>
     </header>
   );
 }
