@@ -13,15 +13,15 @@ import GlobalStyle from './styles/global';
 export default function App() {
   return (
     <>
-      {/* <Provider store={store}>
-      <PersistGate persistor={persistor}> */}
-      <HashRouter history={history}>
-        <Routes />
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <HashRouter history={history}>
+            <Routes />
 
-        <GlobalStyle />
-      </HashRouter>
-      {/* </PersistGate>
-    </Provider> */}
+            <GlobalStyle />
+          </HashRouter>
+        </PersistGate>
+      </Provider>
     </>
   );
 }

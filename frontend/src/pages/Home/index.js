@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-// import { Container } from './styles';
 import Header from '../../components/Header';
 import Characteristics from '../../components/Characteristics';
 import Skills from '../../components/Skills';
 import Advantages from '../../components/Advantages';
 import Description from '../../components/Description';
 
+import { Container } from './styles';
+
 export default function Home() {
+  const [points, setPoints] = useState(0);
+
   return (
-    <div
+    <Container
       className="App ficha-de-personagem container"
       ng-controller="FichaDePersonagem"
     >
       <div className="ficha">
-        <Header />
+        <Header points={points} setPoints={setPoints} />
 
         <form className="row" name="ficha" noValidate>
-          <Characteristics />
+          <Characteristics points={points} setPoints={setPoints} />
 
-          <Skills />
+          <Skills points={points} setPoints={setPoints} />
 
-          <Advantages />
+          <Advantages points={points} setPoints={setPoints} />
 
-          <Description />
+          <Description points={points} setPoints={setPoints} />
 
           <div className="form-group salvar-ficha">
             <button
@@ -37,6 +40,6 @@ export default function Home() {
           </div>
         </form>
       </div>
-    </div>
+    </Container>
   );
 }
