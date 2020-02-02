@@ -2,163 +2,100 @@ import React, { useState } from 'react';
 
 // import { Container } from './styles';
 
+import Attribute from '../Attribute';
+import Points from '../Points';
+
 export default function Characteristics({
-  totalCaracteristicas,
-  setTotalCaracteristicas,
-  pontosDeExperiencia,
+  strength,
+  setStrength,
+  skill,
+  setSkill,
+  constitution,
+  setConstitution,
+  protection,
+  setProtection,
+  firePower,
+  setFirePower,
+  experience,
+  setExperience,
 }) {
-  const [pontosDeVida, setPontosDeVida] = useState(1);
-  const [pontosDeMagia, setPontosDeMagia] = useState(1);
-  const [vidaPerdida, setVidaPerdida] = useState(0);
-  const [magiaPerdida, setMagiaPerdida] = useState(0);
-  const attributes = [
-    'Força',
-    'Habilidade',
-    'Resistência',
-    'Armadura',
-    'Poder De Fogo',
-  ];
+  const [lifePoints, setLifePoints] = useState(1);
+  const [magicPoints, setMagicPoints] = useState(1);
+  const [lostLifePoints, setLostLifePoints] = useState(0);
+  const [lostMagicPoints, setLostMagicPoints] = useState(0);
 
-  function caracteristicas(attributeValue) {
-    setTotalCaracteristicas(0);
-
-    let pontosGastosAtualmente = 5;
-
-    if (attributeValue >= 0 && attributeValue <= 5) {
-      setTotalCaracteristicas(totalCaracteristicas + attributeValue);
-    } else if (attributeValue > 5) {
-      let pes = attributeValue - pontosGastosAtualmente;
-
-      if (attributeValue > 5 && attributeValue <= 10)
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 2
-        );
-      if (attributeValue > 10 && attributeValue <= 15) {
-        pes = attributeValue - 10;
-
-        pontosGastosAtualmente = 15;
-
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 3
-        );
-      }
-      if (attributeValue > 15 && attributeValue <= 20) {
-        pes = attributeValue - 15;
-
-        pontosGastosAtualmente = 30;
-
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 5
-        );
-      }
-      if (attributeValue > 20) {
-        pes = attributeValue - 20;
-
-        pontosGastosAtualmente = 55;
-
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 10
-        );
-      }
-    }
+  function updateConstitution(value) {
+    setConstitution(value);
+    setLifePoints(value ? value * 5 : 1);
+    setMagicPoints(value ? value * 5 : 1);
   }
 
   return (
     <div className="caracteristicas col-xs-12 col-sm-6">
       <h2>Características</h2>
 
-      {attributes.map(attribute => {
-        let attributeValue = 0;
+      <Attribute
+        name="strength"
+        label="Força"
+        value={strength}
+        setAttribute={setStrength}
+        experience={experience}
+      />
 
-        return (
-          <div key={attribute} className="form-group fundo has-feedback">
-            <label htmlFor="">{attribute}</label>
+      <Attribute
+        name="skill"
+        label="Habilidade"
+        value={skill}
+        setAttribute={setSkill}
+        experience={experience}
+      />
 
-            <input
-              className=""
-              type="number"
-              placeholder="0"
-              min="0"
-              max="999"
-              onChange={event => {
-                attributeValue = event.target.value;
+      <Attribute
+        name="constitution"
+        label="Resistência"
+        value={constitution}
+        setAttribute={updateConstitution}
+        experience={experience}
+      />
 
-                caracteristicas(attributeValue);
-              }}
-            />
+      <Attribute
+        name="protection"
+        label="Armadura"
+        value={protection}
+        setAttribute={setProtection}
+        experience={experience}
+      />
 
-            {attributeValue > 5 && pontosDeExperiencia === 0 ? (
-              <span className="form-control alert-danger">
-                Máximo de 5 para recém-criados
-              </span>
-            ) : null}
-          </div>
-        );
-      })}
+      <Attribute
+        name="firePower"
+        label="Poder De Fogo"
+        value={firePower}
+        setAttribute={setFirePower}
+        experience={experience}
+      />
 
       <div className="pontos">
-        <div className="form-group fundo">
-          <label htmlFor="">
-            Pontos de <span>v</span>ida
-          </label>
-          <input
-            className=""
-            type="number"
-            name="ponto-de-vida"
-            placeholder="1"
-            min="0"
-            max="999"
-            value="{{resistencia * pontosDeVida + vidaPerdida}}"
-            disabled
-          />
-          <input
-            className=""
-            type="number"
-            name="vida-perdida"
-            placeholder="0"
-            min="-999"
-            max="0"
-            ng-model="vidaPerdida"
-          />
-        </div>
-        <div className="form-group fundo">
-          <label htmlFor="">
-            Pontos de <span>m</span>agia
-          </label>
-          <input
-            className=""
-            type="number"
-            name="ponto-de-magia"
-            placeholder="1"
-            min="0"
-            max="999"
-            value="{{resistencia * pontosDeMagia + magiaPerdida}}"
-            disabled
-          />
-          <input
-            className=""
-            type="number"
-            name="magia-perdida"
-            placeholder="0"
-            min="-999"
-            max="0"
-            ng-model="magiaPerdida"
-          />
-        </div>
-        <div className="form-group fundo">
-          <label htmlFor="">
-            Pontos de <span>e</span>xperiência
-          </label>
-          <input
-            className=""
-            type="number"
-            name="pontos-de-experiencia"
-            placeholder="0"
-            min="0"
-            max="9999"
-            ng-model="pontosDeExperiencia"
-          />
-        </div>
+        <Points
+          points={lifePoints}
+          lost={lostLifePoints}
+          setLostPoints={setLostLifePoints}
+          name="lifePoints"
+        >
+          Pontos de <span>v</span>ida
+        </Points>
+
+        <Points
+          points={magicPoints}
+          lost={lostMagicPoints}
+          setLostPoints={setLostMagicPoints}
+          name="magicPoints"
+        >
+          Pontos de <span>m</span>agia
+        </Points>
+
+        <Points points={experience} setPoints={setExperience} name="experience">
+          Pontos de <span>e</span>xperiência
+        </Points>
       </div>
     </div>
   );
