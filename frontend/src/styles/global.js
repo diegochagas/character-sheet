@@ -323,11 +323,7 @@ export default createGlobalStyle`
     background-color: #b2b5b7;
   }
 
-  .ficha-de-personagem .form-control-feedback{
-    right: 12px;
-  }
-
-  .ficha-de-personagem .has-error input {
+  .ficha-de-personagem .has-error {
     border-color: #a94442;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   }
@@ -350,7 +346,7 @@ export default createGlobalStyle`
       width: 100%;
     }
 
-    #nome {
+    #name {
       width: 50%;
       min-width: 165px;
     }
@@ -370,6 +366,7 @@ export default createGlobalStyle`
     background-color: #b2b5b7;
     border: 1px solid #fff;
     border-radius: 4px;
+    margin-left: 10px;
   }
 
   .ficha-de-personagem input {

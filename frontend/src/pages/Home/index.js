@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../../components/Header';
 import Characteristics from '../../components/Characteristics';
@@ -9,96 +9,95 @@ import Description from '../../components/Description';
 import { Container } from './styles';
 
 export default function Home() {
-  const [strength, setStrength] = useState(0);
-  const [skill, setSkill] = useState(0);
-  const [constitution, setConstitution] = useState(0);
-  const [protection, setProtection] = useState(0);
-  const [firePower, setFirePower] = useState(0);
+  const [initialPoints, setInitialPoints] = useState(0);
   const [points, setPoints] = useState(0);
-  const [totalCaracteristicas, setTotalCaracteristicas] = useState(0);
-  const [totalVantagens, setTotalVantagens] = useState(0);
-  const [totalDesvantagens, setTotalDesvantagens] = useState(0);
+  const [strength, setStrength] = useState(0);
+  const [dexterity, setDexterity] = useState(0);
+  const [constitution, setConstitution] = useState(0);
+  const [armor, setArmor] = useState(0);
+  const [distanceAttacks, setDistanceAttacks] = useState(0);
+  const [advantages, setAdvantages] = useState(0);
+  const [disadvantages, setDisadvantages] = useState(0);
   const [experience, setExperience] = useState(0);
 
-  function caracteristicas(attributeValue) {
-    let pontosGastosAtualmente = 5;
+  useEffect(() => {
+    setPoints(
+      initialPoints +
+        Math.floor(experience / 10) -
+        calculateCharacteristics(strength) -
+        calculateCharacteristics(dexterity) -
+        calculateCharacteristics(constitution) -
+        calculateCharacteristics(armor) -
+        calculateCharacteristics(distanceAttacks) -
+        advantages -
+        disadvantages
+    );
+  }, [
+    advantages,
+    armor,
+    constitution,
+    dexterity,
+    disadvantages,
+    experience,
+    distanceAttacks,
+    strength,
+    initialPoints,
+  ]);
 
-    if (attributeValue >= 0 && attributeValue <= 5) {
-      console.log(totalCaracteristicas, attributeValue);
+  const scales = [
+    { value: 4, label: 'Pessoa comum' },
+    { value: 5, label: 'Novato' },
+    { value: 7, label: 'Lutador' },
+    { value: 10, label: 'Campeão' },
+    { value: 12, label: 'Lenda' },
+  ];
 
-      setTotalCaracteristicas(totalCaracteristicas + attributeValue);
-    } else if (attributeValue > 5) {
-      let pes = attributeValue - pontosGastosAtualmente;
+  function calculateCharacteristics(attributeValue) {
+    let total = 0;
 
-      if (attributeValue > 5 && attributeValue <= 10)
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 2
-        );
-      if (attributeValue > 10 && attributeValue <= 15) {
-        pes = attributeValue - 10;
-
-        pontosGastosAtualmente = 15;
-
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 3
-        );
-      }
-      if (attributeValue > 15 && attributeValue <= 20) {
-        pes = attributeValue - 15;
-
-        pontosGastosAtualmente = 30;
-
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 5
-        );
-      }
-      if (attributeValue > 20) {
-        pes = attributeValue - 20;
-
-        pontosGastosAtualmente = 55;
-
-        setTotalCaracteristicas(
-          totalCaracteristicas + pontosGastosAtualmente + pes * 10
-        );
-      }
+    for (let i = 1; i <= attributeValue; i++) {
+      if (i <= 5) total++;
+      else if (i > 5 && i <= 10) total += 2;
+      else if (i > 10 && i <= 15) total += 3;
+      else if (i > 15 && i <= 20) total += 5;
+      else total += 10;
     }
+
+    return total;
   }
 
   return (
     <Container className="App ficha-de-personagem container">
       <div className="ficha">
         <Header
+          scales={scales}
+          setInitialPoints={setInitialPoints}
           points={points}
-          totalCaracteristicas={totalCaracteristicas}
-          totalVantagens={totalVantagens}
-          totalDesvantagens={totalDesvantagens}
-          experience={experience}
-          setPoints={setPoints}
         />
 
         <form className="row" name="ficha" noValidate>
           <Characteristics
             strength={strength}
             setStrength={setStrength}
-            skill={skill}
-            setSkill={setSkill}
+            dexterity={dexterity}
+            setDexterity={setDexterity}
             constitution={constitution}
             setConstitution={setConstitution}
-            protection={protection}
-            setProtection={setProtection}
-            firePower={firePower}
-            setFirePower={setFirePower}
+            armor={armor}
+            setArmor={setArmor}
+            distanceAttacks={distanceAttacks}
+            setDistanceAttacks={setDistanceAttacks}
             experience={experience}
             setExperience={setExperience}
           />
 
-          <Skills points={points} setPoints={setPoints} />
+          <Skills strength={strength} />
 
-          <Advantages
-            totalVantagens={totalVantagens}
-            setTotalVantagens={setTotalVantagens}
-            totalDesvantagens={totalDesvantagens}
-            setTotalDesvantagens={setTotalDesvantagens}
+          {/* <Advantages
+            advantages={advantages}
+            setAdvantages={setAdvantages}
+            disadvantages={disadvantages}
+            setDisadvantages={setDisadvantages}
           />
 
           <Description points={points} setPoints={setPoints} />
@@ -112,7 +111,7 @@ export default function Home() {
             >
               Salvar personagem
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
     </Container>

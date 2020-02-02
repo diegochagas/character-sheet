@@ -1,62 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // import { Container } from './styles';
 
-export default function Skills() {
-  const tiposDeDano = [
+export default function Skills({ strength }) {
+  const damageTypes = [
     {
       id: 1,
-      dano: 'Dano Físico',
-      tipo: 'Corte',
-      descricao: 'Lâminas ou objetos afiados. Espadas, machados, garras...',
+      damage: 'Dano Físico',
+      type: 'Corte',
+      description: 'Lâminas ou objetos afiados. Espadas, machados, garras...',
     },
     {
       id: 2,
-      dano: 'Dano Físico',
-      tipo: 'Perfuração',
-      descricao:
+      damage: 'Dano Físico',
+      type: 'Perfuração',
+      description:
         'Armas pontudas ou armas de fogo. Flechas, lanças, adagas, dardos, espinhos, chifres, pistolas..',
     },
     {
       id: 3,
-      dano: 'Dano Físico',
-      tipo: 'Esmagamento',
-      descricao:
+      damage: 'Dano Físico',
+      type: 'Esmagamento',
+      description:
         'Armas sem partes afiadas ou pontudas, ou deslocamento de matéria (como explosões). Socos, chutes, clavas, martelos, pedras, bombas, granadas...',
     },
     {
       id: 4,
-      dano: 'Dano por Energia',
-      tipo: 'Fogo',
-      descricao:
+      damage: 'Dano por Energia',
+      type: 'Fogo',
+      description:
         'Lança-chamas, bolas de fogo, raio laser, bombas incendiárias...',
     },
     {
       id: 5,
-      dano: 'Dano por Energia',
-      tipo: 'Frio',
-      descricao: 'Raio congelante, bolas de neve, chuva de gelo...',
+      damage: 'Dano por Energia',
+      type: 'Frio',
+      description: 'Raio congelante, bolas de neve, chuva de gelo...',
     },
     {
       id: 6,
-      dano: 'Dano por Energia',
-      tipo: 'Elétrico',
-      descricao: 'Choques e relâmpagos em geral.',
+      damage: 'Dano por Energia',
+      type: 'Elétrico',
+      description: 'Choques e relâmpagos em geral.',
     },
     {
       id: 7,
-      dano: 'Dano por Energia',
-      tipo: 'Químico',
-      descricao:
+      damage: 'Dano por Energia',
+      type: 'Químico',
+      description:
         'Ácido, fumaça, veneno, toxinas, poluentes, líquidos perigosos em geral...',
     },
     {
       id: 8,
-      dano: 'Dano por Energia',
-      tipo: 'Sônico',
-      descricao: 'Estrondo sônico, vento, magias musicais...',
+      damage: 'Dano por Energia',
+      type: 'Sônico',
+      description: 'Estrondo sônico, vento, magias musicais...',
     },
   ];
+
+  const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState({});
 
   const magiasConhecidas = [
     { id: 1, label: 'Ataque Mágico' },
@@ -71,27 +74,29 @@ export default function Skills() {
     <div className="habilidades col-xs-12 col-sm-6">
       <div className="form-group">
         <h3>Tipos de dano</h3>
+
         <div className="tipos-de-dano">
           <div className="select-tiposDeDano">
             <select
               className="form-control"
               name="tipos-de-dano"
-              ng-model="tiposDeDano.selectedOption"
-              ng-options="option.tipo group by option.dano for option in tiposDeDano.availableOptions track by option.id"
+              value={selectedType.type}
+              onChange={event => setSelectedType(Number(event.target.value))}
             >
-              <option value="">-- Tipos de Dano --</option>
+              <option value={0}>-- Tipos de Dano --</option>
 
-              {tiposDeDano.map(tipo => (
-                <option key={tipo.tipo} value={tipo.tipo}>
-                  {tipo.tipo}
+              {damageTypes.map(type => (
+                <option key={type.id} value={type.id}>
+                  {type.type}
                 </option>
               ))}
             </select>
+
             <button
               className="btn btn-default"
               type="button"
-              ng-click="addTipoDeDano(tiposDeDano.selectedOption)"
-              ng-disabled="tiposDeDano.selectedOption.id == 0 || totalTipos > forca"
+              onClick={() => setTypes([...types, Number(selectedType)])}
+              disabled={selectedType.id === 0 || types.length > strength}
             >
               <i className="fas fa-plus" />
             </button>
@@ -102,9 +107,12 @@ export default function Skills() {
             className="adicionados"
             ng-repeat="tipoDeDano in tiposDeDanoAdicionados"
           >
-            {tiposDeDano.map(tipo => (
-              <span key={tipo.tipo} className="texto">
-                {tipo.tipo},{' '}
+            {types.map(type => (
+              <span key={type.type} className="texto">
+                {damageTypes.find(damage => {
+                  if (type === damage.id) return damage.type;
+                })}
+                ,{' '}
               </span>
             ))}
             <div className="label label-danger">
@@ -128,6 +136,7 @@ export default function Skills() {
             ))}
           </div>
         </div>
+
         <textarea className="form-control" name="magias-conhecidas" rows="4" />
       </div>
       <div className="form-group has-feedback">

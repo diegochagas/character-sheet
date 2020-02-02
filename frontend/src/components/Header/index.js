@@ -1,107 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // import { Container } from './styles';
 
-export default function Header({
-  points,
-  setPoints,
-  totalCaracteristicas,
-  totalVantagens,
-  totalDesvantagens,
-  pontosDeExperiencia,
-}) {
-  const pontuacao = [
-    { value: 4, name: 'Pessoa comum' },
-    { value: 5, name: 'Novato' },
-    { value: 7, name: 'Lutador' },
-    { value: 10, name: 'Campeão' },
-    { value: 12, name: 'Lenda' },
-  ];
-
-  function pontosDePersonagem(experiencia) {
-    let pontos = 0;
-    if (experiencia !== undefined) pontos = Math.floor(experiencia / 10);
-    return pontos;
-  }
+export default function Header({ scales, setInitialPoints, points }) {
+  const [name, setName] = useState('');
+  const [nameTouched, setNameTouched] = useState(false);
 
   return (
     <header className="App-header header-ficha col-xs-12">
       <h2>3D&T • Defensores de Tóquio 3ª Edição Alpha</h2>
+
       <h1>Ficha de Personagem</h1>
+
       <div className="fundo">
-        <label className="" htmlFor="nome">
-          Nome
-        </label>
+        <label htmlFor="name">Nome</label>
 
         <input
+          id="name"
+          className={
+            (nameTouched && name.length <= 0) || name.length > 100
+              ? 'has-error'
+              : ''
+          }
           type="text"
-          name="nome"
-          ng-model="nome"
           required
-          ng-maxlength="255"
-          id="nome"
-        />
-        <span
-          ng-show="ficha.nome.$touched && (ficha.nome.$error.required || ficha.nome.$error.maxlength)"
-          className="glyphicon glyphicon-remove form-control-feedback"
-          aria-hidden="true"
+          onBlur={() => setNameTouched(true)}
+          onChange={event => setName(event.target.value)}
         />
 
-        <label className="" htmlFor="pontos">
-          Pontos
-        </label>
+        <label htmlFor="points">Pontos</label>
 
         <input
-          className=""
+          id="points"
           type="number"
-          name="pontos"
           placeholder="0"
           min="0"
           max="999"
-          value={
-            points -
-            totalCaracteristicas -
-            totalVantagens +
-            totalDesvantagens * -1 +
-            pontosDePersonagem(pontosDeExperiencia)
-          }
+          value={points}
           disabled
         />
 
-        <label className="" htmlFor="nome">
-          Escala
-        </label>
-
         <select
-          className=""
-          name="pontuacao"
           required
-          onChange={event => setPoints(event.target.value)}
+          onChange={event => setInitialPoints(Number(event.target.value))}
         >
           <option value="">Pontos</option>
 
-          {pontuacao.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.name}
+          {scales.map(scale => (
+            <option key={scale.value} value={scale.value}>
+              {scale.label}
             </option>
           ))}
         </select>
       </div>
-      <span
-        ng-show="ficha.nome.$touched && ficha.nome.$error.required"
-        className="form-control alert-danger"
-      >
-        Nome obrigatório
-      </span>
-      <span
-        ng-show="ficha.nome.$touched && ficha.nome.$error.maxlength"
-        className="form-control alert-danger"
-      >
-        Máximo de 255 caracteres
-      </span>
-      <span ng-show="minimoPontos()" className="form-control alert-danger">
-        Mínimo de 0 pontos
-      </span>
+
+      {nameTouched && name.length <= 0 ? (
+        <span className="form-control alert-danger">Nome obrigatório</span>
+      ) : null}
+
+      {name.length > 100 ? (
+        <span className="form-control alert-danger">
+          Máximo de 100 caracteres
+        </span>
+      ) : null}
+
+      {points < 0 ? (
+        <span className="form-control alert-danger">Mínimo de 0 pontos</span>
+      ) : null}
     </header>
   );
 }
+
+Header.propTypes = {
+  initialPoints: PropTypes.array,
+  points: PropTypes.number,
+  setPoints: PropTypes.func,
+};
