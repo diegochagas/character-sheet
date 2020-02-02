@@ -91,7 +91,7 @@ export default function Home() {
             setExperience={setExperience}
           />
 
-          <Skills strength={strength} />
+          <Skills />
 
           {/* <Advantages
             advantages={advantages}
