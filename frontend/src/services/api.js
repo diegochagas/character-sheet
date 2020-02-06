@@ -113,3 +113,9 @@ export const spells = [
     description: '',
   },
 ];
+
+export const uniqueAdvantages = [
+  { id: 1, value: 0, label: 'Humano (0)', descricao: '' },
+  { id: 2, value: 1, label: 'Anão (1)', descricao: '' },
+  { id: 3, value: 2, label: 'Elfo (2)', descricao: '' },
+];

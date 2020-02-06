@@ -77,7 +77,7 @@ export default function Characteristics({
       <div className="pontos">
         <Points
           points={lifePoints}
-          lost={lostLifePoints}
+          lostPoints={lostLifePoints}
           setLostPoints={setLostLifePoints}
           name="lifePoints"
         >
@@ -86,7 +86,7 @@ export default function Characteristics({
 
         <Points
           points={magicPoints}
-          lost={lostMagicPoints}
+          lostPoints={lostMagicPoints}
           setLostPoints={setLostMagicPoints}
           name="magicPoints"
         >

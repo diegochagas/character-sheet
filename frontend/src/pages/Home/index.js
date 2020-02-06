@@ -93,14 +93,14 @@ export default function Home() {
 
           <Skills />
 
-          {/* <Advantages
+          <Advantages
             advantages={advantages}
             setAdvantages={setAdvantages}
             disadvantages={disadvantages}
             setDisadvantages={setDisadvantages}
           />
 
-          <Description points={points} setPoints={setPoints} />
+          {/* <Description points={points} setPoints={setPoints} />
 
           <div className="form-group salvar-ficha">
             <button

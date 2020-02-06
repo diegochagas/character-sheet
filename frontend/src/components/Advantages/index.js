@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // import { Container } from './styles';
+import { uniqueAdvantages } from '../../services/api';
 
 export default function Advantages() {
+  const [selectedOption, setSelectedOption] = useState('');
+
+  function addUniqueAdvantage() {}
+
   return (
     <div className="vantagens-desvantagens col-xs-12 col-sm-6">
       <div className="form-group">
         <h2>Vantagens</h2>
         <div className="vantagens-unicas input-group">
-          <div className="input-group-addon">Vantagens Únicas</div>
           <select
             className="form-control"
             name="vantagens-unicas"
-            ng-model="vantagensUnicas.selectedOption"
-            ng-options="option.label for option in vantagensUnicas.availableOptions track by option.id"
-            ng-change="atualizaVantagemUnica()"
-          />
+            onChange={event => setSelectedOption(event.target.value)}
+          >
+            <option value="">Vantagens Únicas</option>
+
+            {uniqueAdvantages.map(advantage => (
+              <option key={advantage.id} value={advantage.label}>
+                {advantage.label}
+              </option>
+            ))}
+          </select>
+
+          <button
+            className="btn btn-default"
+            type="button"
+            onClick={addUniqueAdvantage}
+            disabled={!selectedOption}
+          >
+            <i className="fas fa-plus" />
+          </button>
         </div>
         <div className="kits">
           <div className="select-kits">

@@ -37,6 +37,12 @@ export default function Points({
           onChange={event => setLostPoints(Number(event.target.value))}
         />
       ) : null}
+
+      {points + lostPoints <= 0 ? (
+        <span className="form-control alert-danger">
+          0 {children} ou menos.
+        </span>
+      ) : null}
     </div>
   );
 }
