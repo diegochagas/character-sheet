@@ -45,7 +45,7 @@ export default function Header({ scales, setInitialPoints, points }) {
           required
           onChange={event => setInitialPoints(Number(event.target.value))}
         >
-          <option value="">Pontos</option>
+          <option value="">Pontuação inicial</option>
 
           {scales.map(scale => (
             <option key={scale.value} value={scale.value}>
