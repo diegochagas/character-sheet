@@ -119,3 +119,15 @@ export const uniqueAdvantages = [
   { id: 2, value: 1, label: 'Anão (1)', descricao: '' },
   { id: 3, value: 2, label: 'Elfo (2)', descricao: '' },
 ];
+
+export const classes = [
+  { id: 1, label: 'Alquimmista', descricao: '' },
+  { id: 2, label: 'Cavaleiro', descricao: '' },
+  { id: 3, label: 'Mago', descricao: '' },
+];
+
+export const advantagens = [
+  { id: 1, value: 1, label: 'Paladino', descricao: '' },
+  { id: 2, value: 2, label: 'Memória expandida', descricao: '' },
+  { id: 3, value: 2, label: 'Invisibilidade', descricao: '' },
+];

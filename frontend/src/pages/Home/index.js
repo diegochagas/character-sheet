@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from '../../components/Header';
-import Characteristics from '../../components/Characteristics';
-import Skills from '../../components/Skills';
-import Advantages from '../../components/Advantages';
-import Description from '../../components/Description';
+import Header from './Header';
+import Characteristics from './Characteristics';
+import Skills from './Skills';
+import Advantages from './Advantages';
+import Description from './Description';
 
 import { Container } from './styles';
 

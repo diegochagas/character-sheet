@@ -2,8 +2,26 @@ import React, { useState } from 'react';
 
 // import { Container } from './styles';
 
-export default function Select({ defaultOption, items, addItem }) {
+export default function Select({
+  defaultOption,
+  items,
+  setItems,
+  choosen,
+  setChoosen,
+}) {
   const [selectedOption, setSelectedOption] = useState('');
+
+  function addItem() {
+    const newList = items;
+
+    newList.splice(items.indexOf(selectedOption), 1);
+
+    setItems(newList);
+
+    setChoosen([...choosen, selectedOption].sort());
+
+    setSelectedOption('');
+  }
 
   return (
     <div className="tipos-de-dano">
@@ -15,11 +33,13 @@ export default function Select({ defaultOption, items, addItem }) {
         >
           <option value="">{defaultOption}</option>
 
-          {items.map(item => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
+          {items
+            ? items.map(item => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))
+            : null}
         </select>
 
         <button

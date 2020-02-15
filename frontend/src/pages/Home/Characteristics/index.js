@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 // import { Container } from './styles';
 
-import Attribute from '../Attribute';
-import Points from '../Points';
+import Attribute from '../../../components/Attribute';
+import Points from '../../../components/Points';
 
 export default function Characteristics({
   strength,
