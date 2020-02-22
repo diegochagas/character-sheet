@@ -8,6 +8,7 @@ export default function Select({
   setItems,
   choosen,
   setChoosen,
+  addAdvantage,
 }) {
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -21,6 +22,8 @@ export default function Select({
     setChoosen([...choosen, selectedOption].sort());
 
     setSelectedOption('');
+
+    if (addAdvantage) addAdvantage(selectedOption);
   }
 
   return (

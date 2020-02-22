@@ -114,20 +114,26 @@ export const spells = [
   },
 ];
 
-export const uniqueAdvantages = [
+export const races = [
   { id: 1, value: 0, label: 'Humano (0)', descricao: '' },
   { id: 2, value: 1, label: 'Anão (1)', descricao: '' },
   { id: 3, value: 2, label: 'Elfo (2)', descricao: '' },
 ];
 
 export const classes = [
-  { id: 1, label: 'Alquimmista', descricao: '' },
+  { id: 1, label: 'Alquimista', descricao: '' },
   { id: 2, label: 'Cavaleiro', descricao: '' },
   { id: 3, label: 'Mago', descricao: '' },
 ];
 
-export const advantagens = [
+export const advantages = [
   { id: 1, value: 1, label: 'Paladino', descricao: '' },
   { id: 2, value: 2, label: 'Memória expandida', descricao: '' },
   { id: 3, value: 2, label: 'Invisibilidade', descricao: '' },
+];
+
+export const disadvantages = [
+  { id: 1, value: -1, label: 'Código de honra', descricao: '' },
+  { id: 2, value: -1, label: 'Má Fama', descricao: '' },
+  { id: 3, value: -2, label: 'Maldição', descricao: '' },
 ];

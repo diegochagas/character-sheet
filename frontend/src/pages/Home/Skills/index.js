@@ -60,7 +60,7 @@ export default function Skills() {
       <div className="form-group has-feedback">
         <h3>Dinheiro e itens</h3>
 
-        <TextArea choosen={[]} setChoosen={() => {}} rows="5" />
+        <TextArea rows="5" />
       </div>
     </div>
   );

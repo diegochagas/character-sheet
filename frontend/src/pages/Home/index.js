@@ -16,8 +16,7 @@ export default function Home() {
   const [constitution, setConstitution] = useState(0);
   const [armor, setArmor] = useState(0);
   const [distanceAttacks, setDistanceAttacks] = useState(0);
-  const [advantages, setAdvantages] = useState(0);
-  const [disadvantages, setDisadvantages] = useState(0);
+  const [totalAdvantages, setTotalAdvantages] = useState(0);
   const [experience, setExperience] = useState(0);
 
   useEffect(() => {
@@ -29,19 +28,17 @@ export default function Home() {
         calculateCharacteristics(constitution) -
         calculateCharacteristics(armor) -
         calculateCharacteristics(distanceAttacks) -
-        advantages -
-        disadvantages
+        totalAdvantages
     );
   }, [
-    advantages,
     armor,
     constitution,
     dexterity,
-    disadvantages,
     experience,
     distanceAttacks,
     strength,
     initialPoints,
+    totalAdvantages,
   ]);
 
   const scales = [
@@ -94,10 +91,8 @@ export default function Home() {
           <Skills />
 
           <Advantages
-            advantages={advantages}
-            setAdvantages={setAdvantages}
-            disadvantages={disadvantages}
-            setDisadvantages={setDisadvantages}
+            totalAdvantages={totalAdvantages}
+            setTotalAdvantages={setTotalAdvantages}
           />
 
           {/* <Description points={points} setPoints={setPoints} />
