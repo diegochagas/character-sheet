@@ -61,7 +61,7 @@ export default function Home() {
 
     const data = new FormData(event.target);
 
-    console.log(data);
+    alert(JSON.stringify(data));
   }
 
   return (
