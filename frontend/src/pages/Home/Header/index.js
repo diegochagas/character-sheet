@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
 export default function Header({ scales, setInitialPoints, points }) {
   const [name, setName] = useState('');
   const [nameTouched, setNameTouched] = useState(false);
 
   return (
-    <header className="App-header header-ficha col-xs-12">
+    <Container className="header-ficha col-xs-12">
       <h2>3D&T • Defensores de Tóquio 3ª Edição Alpha</h2>
 
       <h1>Ficha de Personagem</h1>
@@ -68,7 +68,7 @@ export default function Header({ scales, setInitialPoints, points }) {
       {points < 0 ? (
         <span className="form-control alert-danger">Mínimo de 0 pontos</span>
       ) : null}
-    </header>
+    </Container>
   );
 }
 

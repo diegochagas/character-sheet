@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
+import { Container } from './styles';
+
 import Header from './Header';
 import Characteristics from './Characteristics';
 import Skills from './Skills';
 import Advantages from './Advantages';
 import Description from './Description';
-import { Container } from './styles';
 import { scales } from '../../services/api';
 
 export default function Home() {
@@ -64,7 +65,7 @@ export default function Home() {
   }
 
   return (
-    <Container className="App ficha-de-personagem container">
+    <Container className="container">
       <div className="ficha">
         <Header
           scales={scales}

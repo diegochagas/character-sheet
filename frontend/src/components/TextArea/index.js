@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
 export default function TextArea({
   items,
@@ -27,7 +27,7 @@ export default function TextArea({
   }
 
   return (
-    <>
+    <Container>
       {choosen ? (
         <div className="lista">
           {choosen.map(item => (
@@ -52,6 +52,6 @@ export default function TextArea({
       {touched && !choosen.length && !text ? (
         <span className="form-control alert-danger">Campo obrigatório</span>
       ) : null}
-    </>
+    </Container>
   );
 }
