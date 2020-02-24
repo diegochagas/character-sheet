@@ -5,8 +5,8 @@ import Characteristics from './Characteristics';
 import Skills from './Skills';
 import Advantages from './Advantages';
 import Description from './Description';
-
 import { Container } from './styles';
+import { scales } from '../../services/api';
 
 export default function Home() {
   const [initialPoints, setInitialPoints] = useState(0);
@@ -41,14 +41,6 @@ export default function Home() {
     totalAdvantages,
   ]);
 
-  const scales = [
-    { value: 4, label: 'Pessoa comum' },
-    { value: 5, label: 'Novato' },
-    { value: 7, label: 'Lutador' },
-    { value: 10, label: 'Campeão' },
-    { value: 12, label: 'Lenda' },
-  ];
-
   function calculateCharacteristics(attributeValue) {
     let total = 0;
 
@@ -63,6 +55,14 @@ export default function Home() {
     return total;
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+
+    console.log(data);
+  }
+
   return (
     <Container className="App ficha-de-personagem container">
       <div className="ficha">
@@ -72,7 +72,7 @@ export default function Home() {
           points={points}
         />
 
-        <form className="row" name="ficha" noValidate>
+        <form className="row" onSubmit={handleSubmit}>
           <Characteristics
             strength={strength}
             setStrength={setStrength}
@@ -95,18 +95,13 @@ export default function Home() {
             setTotalAdvantages={setTotalAdvantages}
           />
 
-          {/* <Description points={points} setPoints={setPoints} />
+          <Description points={points} setPoints={setPoints} />
 
           <div className="form-group salvar-ficha">
-            <button
-              className="btn btn-primary"
-              type="submit"
-              name="botao"
-              ng-disabled="ficha.$invalid"
-            >
+            <button className="btn btn-primary" type="submit" name="botao">
               Salvar personagem
             </button>
-          </div> */}
+          </div>
         </form>
       </div>
     </Container>

@@ -1,3 +1,11 @@
+export const scales = [
+    { value: 4, label: 'Pessoa comum' },
+    { value: 5, label: 'Novato' },
+    { value: 7, label: 'Lutador' },
+    { value: 10, label: 'Campeão' },
+    { value: 12, label: 'Lenda' },
+  ];
+
 export const damages = ['Dano Físico', 'Dano por Energia'];
 
 export const types = [
