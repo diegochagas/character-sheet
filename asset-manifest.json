@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.js": "/character-sheet/static/js/main.16a55aad.chunk.js",
+    "main.js.map": "/character-sheet/static/js/main.16a55aad.chunk.js.map",
+    "runtime-main.js": "/character-sheet/static/js/runtime-main.19350f09.js",
+    "runtime-main.js.map": "/character-sheet/static/js/runtime-main.19350f09.js.map",
+    "static/css/2.c6250e3a.chunk.css": "/character-sheet/static/css/2.c6250e3a.chunk.css",
+    "static/js/2.d16493b4.chunk.js": "/character-sheet/static/js/2.d16493b4.chunk.js",
+    "static/js/2.d16493b4.chunk.js.map": "/character-sheet/static/js/2.d16493b4.chunk.js.map",
+    "index.html": "/character-sheet/index.html",
+    "precache-manifest.02e022900b00cc998905e7ec7c5d067c.js": "/character-sheet/precache-manifest.02e022900b00cc998905e7ec7c5d067c.js",
+    "service-worker.js": "/character-sheet/service-worker.js",
+    "static/css/2.c6250e3a.chunk.css.map": "/character-sheet/static/css/2.c6250e3a.chunk.css.map",
+    "static/js/2.d16493b4.chunk.js.LICENSE": "/character-sheet/static/js/2.d16493b4.chunk.js.LICENSE",
+    "static/media/microgrammad-bold-extented.ttf": "/character-sheet/static/media/microgrammad-bold-extented.15bdff4e.ttf",
+    "static/media/microgrammad-bold-extented.svg": "/character-sheet/static/media/microgrammad-bold-extented.49441315.svg",
+    "static/media/microgrammad-bold-extented.woff": "/character-sheet/static/media/microgrammad-bold-extented.69e60811.woff",
+    "static/media/microgrammad-bold-extented.eot": "/character-sheet/static/media/microgrammad-bold-extented.6a395ffe.eot",
+    "static/media/milford-condensed-bold.eot": "/character-sheet/static/media/milford-condensed-bold.5f5609fb.eot",
+    "static/media/milford-condensed-bold.woff": "/character-sheet/static/media/milford-condensed-bold.866992a7.woff",
+    "static/media/milford-condensed-bold.ttf": "/character-sheet/static/media/milford-condensed-bold.a9caf097.ttf",
+    "static/media/milford-condensed-bold.svg": "/character-sheet/static/media/milford-condensed-bold.e67abedd.svg",
+    "static/media/milford-condensed.woff": "/character-sheet/static/media/milford-condensed.5b54ce4f.woff",
+    "static/media/milford-condensed.ttf": "/character-sheet/static/media/milford-condensed.65c3f370.ttf",
+    "static/media/milford-condensed.eot": "/character-sheet/static/media/milford-condensed.e43ab4aa.eot",
+    "static/media/milford-condensed.svg": "/character-sheet/static/media/milford-condensed.e8680053.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.19350f09.js",
+    "static/css/2.c6250e3a.chunk.css",
+    "static/js/2.d16493b4.chunk.js",
+    "static/js/main.16a55aad.chunk.js"
+  ]
+}
