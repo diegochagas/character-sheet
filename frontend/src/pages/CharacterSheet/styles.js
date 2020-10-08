@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-top: 15px;
-  margin-bottom: 15px;
-
   h1 {
     display: block;
     background-color: #4c4b4e;
@@ -29,11 +26,6 @@ export const Container = styled.div`
     h2 {
       font-size: 27px;
     }
-  }
-
-  .ficha {
-    border:  5px dashed #000;
-    padding: 15px;
   }
 
   .fundo {

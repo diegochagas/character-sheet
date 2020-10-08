@@ -2,14 +2,14 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-function Home() {
+function DeleteCharacter() {
   return (
     <div>
-      <h1>Home</h1>
+      <h1>Delete character</h1>
 
       <p style={{ textAlign: 'center', textTransform: 'uppercase' }}>Web site under construction</p>
     </div>
   );
 }
 
-export default Home;
+export default DeleteCharacter;

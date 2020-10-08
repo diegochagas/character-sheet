@@ -73,4 +73,14 @@ export default createGlobalStyle`
     letter-spacing: 12px;
     font-size: 60px;
   }
+
+  .container-ficha {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .ficha {
+    border:  5px dashed #000;
+    padding: 15px;
+  }
 `;

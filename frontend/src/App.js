@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'; */
 import { HashRouter } from 'react-router-dom';
 
 import Routes from './routes';
+import Navbar from './components/Navbar'
 import history from './services/history';
 
 // import { store, persistor } from './store';
@@ -16,6 +17,8 @@ export default function App() {
       {/* <Provider store={store}>
         <PersistGate persistor={persistor}> */}
       <HashRouter history={history}>
+        <Navbar />
+
         <Routes />
 
         <GlobalStyle />
