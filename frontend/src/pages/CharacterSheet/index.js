@@ -19,6 +19,7 @@ export default function CharacterSheet() {
   const [distanceAttacks, setDistanceAttacks] = useState(0);
   const [totalAdvantages, setTotalAdvantages] = useState(0);
   const [experience, setExperience] = useState(0);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     setPoints(
@@ -70,6 +71,8 @@ export default function CharacterSheet() {
         scales={scales}
         setInitialPoints={setInitialPoints}
         points={points}
+        name={name}
+        setName={setName}
       />
 
       <form className="row" onSubmit={handleSubmit}>

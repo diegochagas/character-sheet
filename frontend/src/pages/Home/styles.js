@@ -70,15 +70,14 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+    flex-direction: column;
   }
 
   .empty-characters a {
     text-decoration: none;
-    color: white;
   }
 
   .empty-characters a:hover {
     font-size: 18px;
-    color: gray;
   }
 `;
