@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export default function Header({ scales, setInitialPoints, points }) {
-  const [name, setName] = useState('');
+export default function Header({ scales, setInitialPoints, points, name, setName }) {
   const [nameTouched, setNameTouched] = useState(false);
 
   return (

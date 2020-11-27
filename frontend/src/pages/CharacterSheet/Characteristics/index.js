@@ -8,14 +8,14 @@ import Points from '../../../components/Points';
 export default function Characteristics({
   strength,
   setStrength,
-  dexterity,
-  setDexterity,
+  skills,
+  setSkills,
   constitution,
   setConstitution,
   armor,
   setArmor,
-  distanceAttacks,
-  setDistanceAttacks,
+  firePower,
+  setFirePower,
   experience,
   setExperience,
 }) {
@@ -43,10 +43,10 @@ export default function Characteristics({
       />
 
       <Attribute
-        name="dexterity"
+        name="skills"
         label="Habilidade"
-        value={dexterity}
-        setAttribute={setDexterity}
+        value={skills}
+        setAttribute={setSkills}
         experience={experience}
       />
 
@@ -67,10 +67,10 @@ export default function Characteristics({
       />
 
       <Attribute
-        name="distanceAttacks"
+        name="firePower"
         label="Poder De Fogo"
-        value={distanceAttacks}
-        setAttribute={setDistanceAttacks}
+        value={firePower}
+        setAttribute={setFirePower}
         experience={experience}
       />
 

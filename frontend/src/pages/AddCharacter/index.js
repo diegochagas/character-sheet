@@ -5,33 +5,36 @@ import { Container } from '../CharacterSheet/styles';
 import Header from '../CharacterSheet/Header';
 import Characteristics from '../CharacterSheet/Characteristics';
 import { scales } from '../../services/api';
+import { charactersStorageName } from '../../utils';
 
 function AddCharacter() {
   const [initialPoints, setInitialPoints] = useState(0);
   const [points, setPoints] = useState(0);
   const [strength, setStrength] = useState(0);
-  const [dexterity, setDexterity] = useState(0);
+  const [skills, setSkills] = useState(0);
   const [constitution, setConstitution] = useState(0);
   const [armor, setArmor] = useState(0);
-  const [distanceAttacks, setDistanceAttacks] = useState(0);
+  const [firePower, setFirePower] = useState(0);
   const [experience, setExperience] = useState(0);
+  const [name, setName] = useState('');
+  const characters = localStorage.getItem(charactersStorageName) !== null ? JSON.parse(localStorage.getItem(charactersStorageName)) : [];
 
   useEffect(() => {
     setPoints(
       initialPoints +
         Math.floor(experience / 10) -
         calculateCharacteristics(strength) -
-        calculateCharacteristics(dexterity) -
+        calculateCharacteristics(skills) -
         calculateCharacteristics(constitution) -
         calculateCharacteristics(armor) -
-        calculateCharacteristics(distanceAttacks)
+        calculateCharacteristics(firePower)
     );
   }, [
     armor,
     constitution,
-    dexterity,
+    skills,
     experience,
-    distanceAttacks,
+    firePower,
     strength,
     initialPoints,
   ]);
@@ -53,9 +56,23 @@ function AddCharacter() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const data = new FormData(event.target);
+    const data = { id: characters.length, name, strength, skills, constitution, armor, firePower };
 
-    alert(JSON.stringify(data));
+    localStorage.setItem(charactersStorageName, JSON.stringify([...characters, data]));
+
+    alert(`Character ${data.name} added with sucess!`);
+
+    setName('');
+
+    setStrength(0);
+
+    setSkills(0);
+
+    setConstitution(0);
+
+    setArmor(0);
+
+    setFirePower(0);
   }
 
   return (
@@ -64,20 +81,22 @@ function AddCharacter() {
         scales={scales}
         setInitialPoints={setInitialPoints}
         points={points}
+        name={name}
+        setName={setName}
       />
 
       <form className="row" onSubmit={handleSubmit}>
         <Characteristics
           strength={strength}
           setStrength={setStrength}
-          dexterity={dexterity}
-          setDexterity={setDexterity}
+          skills={skills}
+          setSkills={setSkills}
           constitution={constitution}
           setConstitution={setConstitution}
           armor={armor}
           setArmor={setArmor}
-          distanceAttacks={distanceAttacks}
-          setDistanceAttacks={setDistanceAttacks}
+          firePower={firePower}
+          setFirePower={setFirePower}
           experience={experience}
           setExperience={setExperience}
         />
