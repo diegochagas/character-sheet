@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/character-sheet/static/js/main.3dc5647a.chunk.js",
-    "main.js.map": "/character-sheet/static/js/main.3dc5647a.chunk.js.map",
-    "runtime-main.js": "/character-sheet/static/js/runtime-main.19350f09.js",
-    "runtime-main.js.map": "/character-sheet/static/js/runtime-main.19350f09.js.map",
-    "static/css/2.c6250e3a.chunk.css": "/character-sheet/static/css/2.c6250e3a.chunk.css",
-    "static/js/2.9e76a884.chunk.js": "/character-sheet/static/js/2.9e76a884.chunk.js",
-    "static/js/2.9e76a884.chunk.js.map": "/character-sheet/static/js/2.9e76a884.chunk.js.map",
+    "main.js": "/character-sheet/static/js/main.0a2791b4.chunk.js",
+    "main.js.map": "/character-sheet/static/js/main.0a2791b4.chunk.js.map",
+    "runtime-main.js": "/character-sheet/static/js/runtime-main.8312bf3a.js",
+    "runtime-main.js.map": "/character-sheet/static/js/runtime-main.8312bf3a.js.map",
+    "static/css/2.cf29e716.chunk.css": "/character-sheet/static/css/2.cf29e716.chunk.css",
+    "static/js/2.1c561ba9.chunk.js": "/character-sheet/static/js/2.1c561ba9.chunk.js",
+    "static/js/2.1c561ba9.chunk.js.map": "/character-sheet/static/js/2.1c561ba9.chunk.js.map",
     "index.html": "/character-sheet/index.html",
-    "precache-manifest.2b157a703975228034c19e80d1b73b50.js": "/character-sheet/precache-manifest.2b157a703975228034c19e80d1b73b50.js",
+    "precache-manifest.43861709c222209824200b134d328d70.js": "/character-sheet/precache-manifest.43861709c222209824200b134d328d70.js",
     "service-worker.js": "/character-sheet/service-worker.js",
-    "static/css/2.c6250e3a.chunk.css.map": "/character-sheet/static/css/2.c6250e3a.chunk.css.map",
-    "static/js/2.9e76a884.chunk.js.LICENSE": "/character-sheet/static/js/2.9e76a884.chunk.js.LICENSE",
+    "static/css/2.cf29e716.chunk.css.map": "/character-sheet/static/css/2.cf29e716.chunk.css.map",
+    "static/js/2.1c561ba9.chunk.js.LICENSE.txt": "/character-sheet/static/js/2.1c561ba9.chunk.js.LICENSE.txt",
     "static/media/microgrammad-bold-extented.ttf": "/character-sheet/static/media/microgrammad-bold-extented.15bdff4e.ttf",
     "static/media/microgrammad-bold-extented.svg": "/character-sheet/static/media/microgrammad-bold-extented.49441315.svg",
     "static/media/microgrammad-bold-extented.woff": "/character-sheet/static/media/microgrammad-bold-extented.69e60811.woff",
@@ -26,9 +26,9 @@
     "static/media/milford-condensed.svg": "/character-sheet/static/media/milford-condensed.e8680053.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.19350f09.js",
-    "static/css/2.c6250e3a.chunk.css",
-    "static/js/2.9e76a884.chunk.js",
-    "static/js/main.3dc5647a.chunk.js"
+    "static/js/runtime-main.8312bf3a.js",
+    "static/css/2.cf29e716.chunk.css",
+    "static/js/2.1c561ba9.chunk.js",
+    "static/js/main.0a2791b4.chunk.js"
   ]
 }
