@@ -3,8 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  max-height: 430px;
   flex-wrap: wrap;
+
+  @media screen and (min-width: 700px) {
+    flex-wrap: nowrap;
+    max-height: 430px;
+  }
 
   .players-container {
     flex: 1;

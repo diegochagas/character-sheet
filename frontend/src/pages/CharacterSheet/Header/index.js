@@ -26,6 +26,7 @@ export default function Header({ scales, setInitialPoints, points, name, setName
           required
           onBlur={() => setNameTouched(true)}
           onChange={event => setName(event.target.value)}
+          value={name}
         />
 
         <label htmlFor="points">Pontos</label>

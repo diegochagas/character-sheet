@@ -60,8 +60,6 @@ function AddCharacter() {
 
     localStorage.setItem(charactersStorageName, JSON.stringify([...characters, data]));
 
-    alert(`Character ${data.name} added with sucess!`);
-
     setName('');
 
     setStrength(0);
@@ -73,6 +71,8 @@ function AddCharacter() {
     setArmor(0);
 
     setFirePower(0);
+
+    alert(`Character ${data.name} added with sucess!`);
   }
 
   return (
