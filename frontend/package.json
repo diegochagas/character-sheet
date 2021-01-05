@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://diegochagas.github.io/character-sheet",
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "history": "^4.10.1",
     "prop-types": "^15.7.2",
