@@ -4,8 +4,7 @@ import { Container } from '../CharacterSheet/styles';
 
 import Header from '../CharacterSheet/Header';
 import Characteristics from '../CharacterSheet/Characteristics';
-import { scales } from '../../services/api';
-import { charactersStorageName } from '../../utils';
+import { scales, getCharacters, postCharacter } from '../../services/api';
 
 function AddCharacter() {
   const [initialPoints, setInitialPoints] = useState(0);
@@ -17,7 +16,31 @@ function AddCharacter() {
   const [firePower, setFirePower] = useState(0);
   const [experience, setExperience] = useState(0);
   const [name, setName] = useState('');
-  const characters = localStorage.getItem(charactersStorageName) !== null ? JSON.parse(localStorage.getItem(charactersStorageName)) : [];
+  const [characters, setCharacters] = useState([]);
+
+  useEffect(() => {
+    async function getChars() {
+      const response = await getCharacters();
+
+      setCharacters(response.data);
+    }
+
+    getChars();
+  }, []);
+
+  function calculateCharacteristics(attributeValue) {
+    let total = 0;
+
+    for (let i = 1; i <= attributeValue; i++) {
+      if (i <= 5) total++;
+      else if (i > 5 && i <= 10) total += 2;
+      else if (i > 10 && i <= 15) total += 3;
+      else if (i > 15 && i <= 20) total += 5;
+      else total += 10;
+    }
+
+    return total;
+  }
 
   useEffect(() => {
     setPoints(
@@ -39,26 +62,20 @@ function AddCharacter() {
     initialPoints,
   ]);
 
-  function calculateCharacteristics(attributeValue) {
-    let total = 0;
-
-    for (let i = 1; i <= attributeValue; i++) {
-      if (i <= 5) total++;
-      else if (i > 5 && i <= 10) total += 2;
-      else if (i > 10 && i <= 15) total += 3;
-      else if (i > 15 && i <= 20) total += 5;
-      else total += 10;
-    }
-
-    return total;
-  }
-
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const data = { id: characters.length, name, strength, skills, constitution, armor, firePower };
+    const data = {
+      id: characters.length,
+      name,
+      strength,
+      skills,
+      constitution,
+      armor,
+      firePower,
+    };
 
-    localStorage.setItem(charactersStorageName, JSON.stringify([...characters, data]));
+    await postCharacter(data);
 
     setName('');
 

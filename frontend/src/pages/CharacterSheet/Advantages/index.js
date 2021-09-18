@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // import { Container } from './styles';
 import {
@@ -10,7 +11,7 @@ import {
 import Select from '../../../components/Select';
 import TextArea from '../../../components/TextArea';
 
-export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
+function Advantages({ totalAdvantages, setTotalAdvantages }) {
   const [uniqueAdvantages, setUniqueAdvantages] = useState(
     races.map(race => race.label).sort()
   );
@@ -26,7 +27,7 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
   const [choosenKits, setChoosenKits] = useState([]);
 
   function addAdvantage(option) {
-    const race = races.find(race => race.label === option);
+    const race = races.find(raceDetails => raceDetails.label === option);
     if (race) setTotalAdvantages(totalAdvantages + race.value);
 
     const choosenKit = classes.find(cls => cls.label === option);
@@ -38,17 +39,19 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
       }
     }
 
-    const advantage = advantages.find(advantage => advantage.label === option);
-    if (advantage)
-    setTotalAdvantages(totalAdvantages + advantage.value);
+    const advantage = advantages.find(
+      advantageDetails => advantageDetails.label === option
+    );
+    if (advantage) setTotalAdvantages(totalAdvantages + advantage.value);
 
-    const disadvantage = disadvantages.find(disadvantage => disadvantage.label === option);
-    if (disadvantage)
-      setTotalAdvantages(totalAdvantages + disadvantage.value);
+    const disadvantage = disadvantages.find(
+      disadvantageDetails => disadvantageDetails.label === option
+    );
+    if (disadvantage) setTotalAdvantages(totalAdvantages + disadvantage.value);
   }
 
   function removeAdvantage(option) {
-    const race = races.find(race => race.label === option);
+    const race = races.find(raceDetails => raceDetails.label === option);
 
     if (race) setTotalAdvantages(totalAdvantages - race.value);
 
@@ -59,13 +62,15 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
       setChoosenKits(newChoosenKits);
     }
 
-    const advantage = advantages.find(advantage => advantage.label === option);
-    if (advantage)
-      setTotalAdvantages(totalAdvantages - advantage.value);
+    const advantage = advantages.find(
+      advantageDetails => advantageDetails.label === option
+    );
+    if (advantage) setTotalAdvantages(totalAdvantages - advantage.value);
 
-    const disadvantage = disadvantages.find(disadvantage => disadvantage.label === option);
-    if (disadvantage)
-      setTotalAdvantages(totalAdvantages - disadvantage.value);
+    const disadvantage = disadvantages.find(
+      disadvantageDetails => disadvantageDetails.label === option
+    );
+    if (disadvantage) setTotalAdvantages(totalAdvantages - disadvantage.value);
   }
 
   function updateListState(states, setState, item, originals) {
@@ -98,7 +103,7 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
           setItems={setUniqueAdvantages}
           choosen={choosen}
           setChoosen={setChoosen}
-          addAdvantage={addAdvantage}
+          addAdvantage={option => addAdvantage(option)}
         />
 
         <Select
@@ -107,7 +112,7 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
           setItems={setKits}
           choosen={choosen}
           setChoosen={setChoosen}
-          addAdvantage={addAdvantage}
+          addAdvantage={option => addAdvantage(option)}
         />
 
         <Select
@@ -116,16 +121,16 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
           setItems={setAdvantagesList}
           choosen={choosen}
           setChoosen={setChoosen}
-          addAdvantage={addAdvantage}
+          addAdvantage={option => addAdvantage(option)}
         />
 
         <TextArea
           items={[...uniqueAdvantages, ...kits, ...advantagesList]}
-          setItems={setAllAdvantages}
+          setItems={items => setAllAdvantages(items)}
           choosen={choosen}
           setChoosen={setChoosen}
           rows="6"
-          removeAdvantage={removeAdvantage}
+          removeAdvantage={option => removeAdvantage(option)}
         />
       </div>
 
@@ -138,7 +143,7 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
           setItems={setDisAdvantagesList}
           choosen={choosenDisadvantage}
           setChoosen={setChoosenDisadvantage}
-          addAdvantage={addAdvantage}
+          addAdvantage={option => addAdvantage(option)}
         />
 
         <TextArea
@@ -147,9 +152,16 @@ export default function Advantages({ totalAdvantages, setTotalAdvantages }) {
           choosen={choosenDisadvantage}
           setChoosen={setChoosenDisadvantage}
           rows="5"
-          removeAdvantage={removeAdvantage}
+          removeAdvantage={option => removeAdvantage(option)}
         />
       </div>
     </div>
   );
 }
+
+Advantages.propTypes = {
+  totalAdvantages: PropTypes.number.isRequired,
+  setTotalAdvantages: PropTypes.func.isRequired,
+};
+
+export default Advantages;

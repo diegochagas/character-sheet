@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // import { Container } from './styles';
 
 import Attribute from '../../../components/Attribute';
 import Points from '../../../components/Points';
 
-export default function Characteristics({
+function Characteristics({
   strength,
   setStrength,
   skills,
@@ -54,7 +55,7 @@ export default function Characteristics({
         name="constitution"
         label="Resistência"
         value={constitution}
-        setAttribute={updateConstitution}
+        setAttribute={value => updateConstitution(value)}
         experience={experience}
       />
 
@@ -100,3 +101,20 @@ export default function Characteristics({
     </div>
   );
 }
+
+Characteristics.propTypes = {
+  strength: PropTypes.number.isRequired,
+  setStrength: PropTypes.func.isRequired,
+  skills: PropTypes.number.isRequired,
+  setSkills: PropTypes.func.isRequired,
+  constitution: PropTypes.number.isRequired,
+  setConstitution: PropTypes.func.isRequired,
+  armor: PropTypes.number.isRequired,
+  setArmor: PropTypes.func.isRequired,
+  firePower: PropTypes.number.isRequired,
+  setFirePower: PropTypes.func.isRequired,
+  experience: PropTypes.number.isRequired,
+  setExperience: PropTypes.func.isRequired,
+};
+
+export default Characteristics;

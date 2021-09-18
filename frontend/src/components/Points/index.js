@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // import { Container } from './styles';
-
-export default function Points({
+function Points({
   children,
   name,
   points,
@@ -46,3 +46,14 @@ export default function Points({
     </div>
   );
 }
+
+Points.propTypes = {
+  children: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  points: PropTypes.number.isRequired,
+  setPoints: PropTypes.func.isRequired,
+  lostPoints: PropTypes.number.isRequired,
+  setLostPoints: PropTypes.func.isRequired,
+};
+
+export default Points;

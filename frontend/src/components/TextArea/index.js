@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export default function TextArea({
+function TextArea({
   items,
   setItems,
   choosen,
@@ -34,7 +35,11 @@ export default function TextArea({
             <div key={item} className="adicionados">
               <span className="texto">{item} </span>
               <span className="badge badge-danger">
-                <i className="fas fa-minus" onClick={() => removeItem(item)} />
+                <i
+                  className="fas fa-minus"
+                  onClick={() => removeItem(item)}
+                  aria-hidden="true"
+                />
               </span>
               ,{' '}
             </div>
@@ -55,3 +60,23 @@ export default function TextArea({
     </Container>
   );
 }
+
+TextArea.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string),
+  setItems: PropTypes.func,
+  choosen: PropTypes.arrayOf(PropTypes.string),
+  setChoosen: PropTypes.func,
+  rows: PropTypes.number,
+  removeAdvantage: PropTypes.func,
+};
+
+TextArea.defaultProps = {
+  items: [],
+  setItems: null,
+  choosen: [],
+  setChoosen: null,
+  rows: 5,
+  removeAdvantage: null,
+};
+
+export default TextArea;

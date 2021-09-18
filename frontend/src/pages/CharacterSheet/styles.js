@@ -19,9 +19,8 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 374px) {
-    h1{
+    h1 {
       font-size: 30px;
-
     }
     h2 {
       font-size: 27px;
@@ -34,7 +33,7 @@ export const Container = styled.div`
 
   .has-error {
     border-color: #a94442;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 
   .header-ficha h2 {
@@ -83,11 +82,11 @@ export const Container = styled.div`
     border: 3px solid #000;
   }
 
-  input[type="number"]{
+  input[type='number'] {
     text-align: center;
   }
 
-  div[class^="select"] {
+  div[class^='select'] {
     display: flex;
   }
 
@@ -105,8 +104,8 @@ export const Container = styled.div`
   }
 
   .salvar-ficha button {
-      margin: 10px auto 0px auto;
-      background: #122b46;
+    margin: 10px auto 0px auto;
+    background: #122b46;
   }
 
   h1 {

@@ -21,6 +21,20 @@ export default function CharacterSheet() {
   const [experience, setExperience] = useState(0);
   const [name, setName] = useState('');
 
+  function calculateCharacteristics(attributeValue) {
+    let total = 0;
+
+    for (let i = 1; i <= attributeValue; i++) {
+      if (i <= 5) total++;
+      else if (i > 5 && i <= 10) total += 2;
+      else if (i > 10 && i <= 15) total += 3;
+      else if (i > 15 && i <= 20) total += 5;
+      else total += 10;
+    }
+
+    return total;
+  }
+
   useEffect(() => {
     setPoints(
       initialPoints +
@@ -42,20 +56,6 @@ export default function CharacterSheet() {
     initialPoints,
     totalAdvantages,
   ]);
-
-  function calculateCharacteristics(attributeValue) {
-    let total = 0;
-
-    for (let i = 1; i <= attributeValue; i++) {
-      if (i <= 5) total++;
-      else if (i > 5 && i <= 10) total += 2;
-      else if (i > 10 && i <= 15) total += 3;
-      else if (i > 15 && i <= 20) total += 5;
-      else total += 10;
-    }
-
-    return total;
-  }
 
   function handleSubmit(event) {
     event.preventDefault();

@@ -1,1 +1,1 @@
-export const charactersStorageName = 'characters3DT';
+export const url = 'http://localhost:3004';

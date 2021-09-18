@@ -38,3 +38,11 @@ Attribute.propTypes = {
   setAttribute: PropTypes.func,
   experience: PropTypes.number,
 };
+
+Attribute.defaultProps = {
+  name: '',
+  label: '',
+  value: 0,
+  setAttribute: () => {},
+  experience: 0,
+};

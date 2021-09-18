@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // import { Container } from './styles';
 
-export default function Select({
+function Select({
   defaultOption,
   items,
   setItems,
@@ -57,3 +58,14 @@ export default function Select({
     </div>
   );
 }
+
+Select.propTypes = {
+  defaultOption: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setItems: PropTypes.func.isRequired,
+  choosen: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setChoosen: PropTypes.func.isRequired,
+  addAdvantage: PropTypes.func.isRequired,
+};
+
+export default Select;

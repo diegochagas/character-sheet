@@ -7,7 +7,9 @@ export default function Advantages() {
     <div>
       <h1>Advantages</h1>
 
-      <p style={{ textAlign: 'center', textTransform: 'uppercase' }}>Web site under construction</p>
+      <p style={{ textAlign: 'center', textTransform: 'uppercase' }}>
+        Web site under construction
+      </p>
     </div>
   );
 }

@@ -32,9 +32,12 @@ module.exports = {
     camelcase: 'off',
     'consistent-return': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'no-console': ['error', { allow: ['tron'] }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'no-plusplus': 'off',
+    'no-await-in-loop': 'off',
+    'no-alert': 'off',
+    'no-console': 'off',
   },
   settings: {
     'import/resolver': {

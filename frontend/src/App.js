@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'; */
 import { HashRouter } from 'react-router-dom';
 
 import Routes from './routes';
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
 import history from './services/history';
 
 // import { store, persistor } from './store';

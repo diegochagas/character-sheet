@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export default function Header({ scales, setInitialPoints, points, name, setName }) {
+function Header({ scales, setInitialPoints, points, name, setName }) {
   const [nameTouched, setNameTouched] = useState(false);
 
   return (
@@ -13,33 +13,37 @@ export default function Header({ scales, setInitialPoints, points, name, setName
       <h1>Ficha de Personagem</h1>
 
       <div className="fundo">
-        <label htmlFor="name">Nome</label>
+        <label htmlFor="name">
+          <span>Nome</span>
 
-        <input
-          id="name"
-          className={
-            (nameTouched && name.length <= 0) || name.length > 100
-              ? 'has-error'
-              : ''
-          }
-          type="text"
-          required
-          onBlur={() => setNameTouched(true)}
-          onChange={event => setName(event.target.value)}
-          value={name}
-        />
+          <input
+            id="name"
+            className={
+              (nameTouched && name.length <= 0) || name.length > 100
+                ? 'has-error'
+                : ''
+            }
+            type="text"
+            required
+            onBlur={() => setNameTouched(true)}
+            onChange={event => setName(event.target.value)}
+            value={name}
+          />
+        </label>
 
-        <label htmlFor="points">Pontos</label>
+        <label htmlFor="points">
+          <span>Pontos</span>
 
-        <input
-          id="points"
-          type="number"
-          placeholder="0"
-          min="0"
-          max="999"
-          value={points}
-          disabled
-        />
+          <input
+            id="points"
+            type="number"
+            placeholder="0"
+            min="0"
+            max="999"
+            value={points}
+            disabled
+          />
+        </label>
 
         <select
           required
@@ -73,7 +77,16 @@ export default function Header({ scales, setInitialPoints, points, name, setName
 }
 
 Header.propTypes = {
-  initialPoints: PropTypes.array,
-  points: PropTypes.number,
-  setPoints: PropTypes.func,
+  scales: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  setInitialPoints: PropTypes.func.isRequired,
+  points: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  setName: PropTypes.func.isRequired,
 };
+
+export default Header;

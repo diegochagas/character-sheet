@@ -25,7 +25,8 @@ export const Container = styled.div`
     margin: 10px;
   }
 
-  .player-1, .player-2 {
+  .player-1,
+  .player-2 {
     margin-top: 20px;
   }
 
@@ -60,7 +61,7 @@ export const Container = styled.div`
   }
 
   .navbar-toggler-icon:before {
-    content: "";
+    content: '';
     position: absolute;
     left: 5px;
     top: 7px;
