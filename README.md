@@ -6,7 +6,3 @@ This sheet are made in Portuguese, but I can maybe create a English version in f
  
 If you want know more about 3D&T, you can check the English descripton about it on Wikipedia:
 (https://en.wikipedia.org/wiki/3D%26T)
-
----
-
-# Jesus said to him, "I am the way, and the truth, and the life. No one comes to the Father except through me." - John 14:6
