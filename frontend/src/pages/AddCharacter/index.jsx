@@ -4,7 +4,7 @@ import { Container } from '../CharacterSheet/styles';
 
 import Header from '../CharacterSheet/Header';
 import Characteristics from '../CharacterSheet/Characteristics';
-import { scales, getCharacters, postCharacter } from '../../services/api';
+import { scales, postCharacter } from '../../services/api';
 
 function AddCharacter() {
   const [initialPoints, setInitialPoints] = useState(0);
@@ -16,17 +16,6 @@ function AddCharacter() {
   const [firePower, setFirePower] = useState(0);
   const [experience, setExperience] = useState(0);
   const [name, setName] = useState('');
-  const [characters, setCharacters] = useState([]);
-
-  useEffect(() => {
-    async function getChars() {
-      const response = await getCharacters();
-
-      setCharacters(response.data);
-    }
-
-    getChars();
-  }, []);
 
   function calculateCharacteristics(attributeValue) {
     let total = 0;
@@ -66,7 +55,6 @@ function AddCharacter() {
     event.preventDefault();
 
     const data = {
-      id: characters.length,
       name,
       strength,
       skills,
@@ -75,21 +63,27 @@ function AddCharacter() {
       firePower,
     };
 
-    await postCharacter(data);
+    try {
+      await postCharacter(data);
 
-    setName('');
+      setName('');
 
-    setStrength(0);
+      setStrength(0);
 
-    setSkills(0);
+      setSkills(0);
 
-    setConstitution(0);
+      setConstitution(0);
 
-    setArmor(0);
+      setArmor(0);
 
-    setFirePower(0);
+      setFirePower(0);
 
-    alert(`Character ${data.name} added with sucess!`);
+      alert(`Character ${data.name} added with sucess!`);
+    } catch (error) {
+      console.error('Failed to save character:', error);
+
+      alert(`Failed to save character ${data.name}.`);
+    }
   }
 
   return (

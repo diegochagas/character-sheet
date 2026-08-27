@@ -28,36 +28,33 @@ function Advantages({ totalAdvantages, setTotalAdvantages }) {
 
   function addAdvantage(option) {
     const race = races.find(raceDetails => raceDetails.label === option);
-    if (race) setTotalAdvantages(totalAdvantages + race.value);
+    if (race) setTotalAdvantages(prev => prev + race.value);
 
     const choosenKit = classes.find(cls => cls.label === option);
     if (choosenKit) {
-      setChoosenKits([...choosenKits, choosenKit]);
-
-      for (let i = 0; i < choosenKits.length; i++) {
-        setTotalAdvantages(totalAdvantages + choosenKits.length);
-      }
+      setChoosenKits(prev => [...prev, choosenKit]);
+      setTotalAdvantages(prev => prev + 1);
     }
 
     const advantage = advantages.find(
       advantageDetails => advantageDetails.label === option
     );
-    if (advantage) setTotalAdvantages(totalAdvantages + advantage.value);
+    if (advantage) setTotalAdvantages(prev => prev + advantage.value);
 
     const disadvantage = disadvantages.find(
       disadvantageDetails => disadvantageDetails.label === option
     );
-    if (disadvantage) setTotalAdvantages(totalAdvantages + disadvantage.value);
+    if (disadvantage) setTotalAdvantages(prev => prev + disadvantage.value);
   }
 
   function removeAdvantage(option) {
     const race = races.find(raceDetails => raceDetails.label === option);
 
-    if (race) setTotalAdvantages(totalAdvantages - race.value);
+    if (race) setTotalAdvantages(prev => prev - race.value);
 
     const newChoosenKits = choosenKits.filter(cls => cls.label !== option);
     if (newChoosenKits.length < choosenKits.length) {
-      setTotalAdvantages(totalAdvantages - choosenKits.length + 1);
+      setTotalAdvantages(prev => prev - 1);
 
       setChoosenKits(newChoosenKits);
     }
@@ -65,12 +62,12 @@ function Advantages({ totalAdvantages, setTotalAdvantages }) {
     const advantage = advantages.find(
       advantageDetails => advantageDetails.label === option
     );
-    if (advantage) setTotalAdvantages(totalAdvantages - advantage.value);
+    if (advantage) setTotalAdvantages(prev => prev - advantage.value);
 
     const disadvantage = disadvantages.find(
       disadvantageDetails => disadvantageDetails.label === option
     );
-    if (disadvantage) setTotalAdvantages(totalAdvantages - disadvantage.value);
+    if (disadvantage) setTotalAdvantages(prev => prev - disadvantage.value);
   }
 
   function updateListState(states, setState, item, originals) {

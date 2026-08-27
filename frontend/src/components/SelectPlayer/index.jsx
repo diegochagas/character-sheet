@@ -14,7 +14,7 @@ function SelectPlayer({
 
   function choosePlayer(char) {
     if (char !== '') {
-      setCharacter(JSON.parse(char.replace(/'/g, '"')));
+      setCharacter(JSON.parse(char));
 
       setPlayerDisplay('block');
     } else {

@@ -14,7 +14,7 @@ function Select({
   const [selectedOption, setSelectedOption] = useState('');
 
   function addItem() {
-    const newList = items;
+    const newList = [...items];
 
     newList.splice(items.indexOf(selectedOption), 1);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes as Switch, Route } from 'react-router-dom';
 
 import AddCharacter from '../pages/AddCharacter';
 import Advantages from '../pages/Advantages';
@@ -14,13 +14,13 @@ export default function Routes() {
     <div className="container container-ficha">
       <div className="ficha">
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/add-character" component={AddCharacter} />
-          <Route path="/advantages" component={Advantages} />
-          <Route path="/character-sheet" component={CharacterSheet} />
-          <Route path="/delete-character" component={DeleteCharacter} />
-          <Route path="/edit-character" component={EditCharacter} />
-          <Route path="/rules" component={Rules} />
+          <Route path="/" element={<Home />} />
+          <Route path="/add-character" element={<AddCharacter />} />
+          <Route path="/advantages" element={<Advantages />} />
+          <Route path="/character-sheet" element={<CharacterSheet />} />
+          <Route path="/delete-character" element={<DeleteCharacter />} />
+          <Route path="/edit-character" element={<EditCharacter />} />
+          <Route path="/rules" element={<Rules />} />
         </Switch>
       </div>
     </div>

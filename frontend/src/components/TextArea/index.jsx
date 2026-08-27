@@ -16,7 +16,7 @@ function TextArea({
   const [text, setText] = useState('');
 
   function removeItem(item) {
-    const newList = choosen;
+    const newList = [...choosen];
 
     newList.splice(choosen.indexOf(item), 1);
 
