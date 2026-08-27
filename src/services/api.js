@@ -1,13 +1,27 @@
-import axios from 'axios';
-
 import { url } from '../utils';
 
+async function request(path, options) {
+  const response = await fetch(`${url}${path}`, options);
+
+  if (!response.ok) {
+    throw new Error(
+      `Request to ${path} failed with status ${response.status}`
+    );
+  }
+
+  return response.json();
+}
+
 export function getCharacters() {
-  return axios.get(`${url}/characters`);
+  return request('/characters');
 }
 
 export function postCharacter(character) {
-  return axios.post(`${url}/characters`, character);
+  return request('/characters', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(character),
+  });
 }
 
 export const scales = [

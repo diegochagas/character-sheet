@@ -1,5 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
-import axios from 'axios';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   getCharacters,
   postCharacter,
@@ -12,27 +11,47 @@ import {
 } from './api';
 import { url } from '../utils';
 
-vi.mock('axios');
+beforeEach(() => {
+  vi.stubGlobal('fetch', vi.fn());
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe('getCharacters', () => {
-  it('fetches the characters collection', () => {
-    axios.get.mockResolvedValue({ data: [] });
+  it('fetches the characters collection and returns the parsed JSON', async () => {
+    const characters = [{ id: 1, name: 'Goku' }];
 
-    getCharacters();
+    fetch.mockResolvedValue({ ok: true, json: () => Promise.resolve(characters) });
 
-    expect(axios.get).toHaveBeenCalledWith(`${url}/characters`);
+    const result = await getCharacters();
+
+    expect(fetch).toHaveBeenCalledWith(`${url}/characters`, undefined);
+    expect(result).toEqual(characters);
+  });
+
+  it('throws when the request fails', async () => {
+    fetch.mockResolvedValue({ ok: false, status: 500 });
+
+    await expect(getCharacters()).rejects.toThrow('500');
   });
 });
 
 describe('postCharacter', () => {
-  it('posts a character to the collection', () => {
+  it('posts a character to the collection as JSON', async () => {
     const character = { name: 'Goku' };
 
-    axios.post.mockResolvedValue({ data: character });
+    fetch.mockResolvedValue({ ok: true, json: () => Promise.resolve(character) });
 
-    postCharacter(character);
+    const result = await postCharacter(character);
 
-    expect(axios.post).toHaveBeenCalledWith(`${url}/characters`, character);
+    expect(fetch).toHaveBeenCalledWith(`${url}/characters`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(character),
+    });
+    expect(result).toEqual(character);
   });
 });
 

@@ -18,9 +18,9 @@ function Home() {
   useEffect(() => {
     async function getChars() {
       try {
-        const response = await getCharacters();
+        const characters = await getCharacters();
 
-        setCharacters(response.data);
+        setCharacters(characters);
       } catch (error) {
         console.error('Failed to load characters:', error);
       }
