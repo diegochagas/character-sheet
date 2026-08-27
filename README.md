@@ -2,7 +2,7 @@
 
 A web character sheet and 1-vs-1 battle simulator for **3D&T** ("Defensores de Tóquio"), a
 Brazilian tabletop RPG loosely inspired by Dungeon & Dragons. It started as a CS50 final project
-(Python + SQL) and was later rewritten in React.
+(Python + SQL), was later rewritten in React, and now runs on Next.js.
 
 If you want to know more about 3D&T, see the English overview on Wikipedia:
 https://en.wikipedia.org/wiki/3D%26T
@@ -25,60 +25,54 @@ is in English.
 
 ## Tech stack
 
+- [Next.js](https://nextjs.org/) (App Router) — dev server, build, and routing (file-based, under
+  `src/app`)
 - [React 19](https://react.dev/) with hooks-based function components
-- [Vite](https://vitejs.dev/) for the dev server and production build (the app used to run on
-  Create React App, which is now deprecated)
-- [react-router-dom v7](https://reactrouter.com/) (`HashRouter`, so the built app works as static
-  files on GitHub Pages without server-side routing)
-- [styled-components v6](https://styled-components.com/) for component styling, plus Bootstrap 4
-  for base layout/utility classes
-- [json-server](https://github.com/typicode/json-server) as a zero-code mock REST API, backed by
-  `db.json`
+- [styled-components v6](https://styled-components.com/) for component styling (wired up for App
+  Router SSR via `src/lib/StyledComponentsRegistry.jsx`), plus Bootstrap 4 for base layout/utility
+  classes
 - [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/react/) for
-  unit tests
+  unit tests (independent of Next's own build — see `vitest.config.js`)
+
+## Data
+
+There's no backend. Characters (the seed roster — Goku, Vegeta, etc. — plus anything you add) live
+in the browser's `localStorage`, seeded from a constant in `src/services/api.js` the first time
+the app runs. That's per-browser/per-device storage: nothing is shared between visitors, and nothing
+is lost by not having a server, deploy target, or database to manage.
 
 ## Project structure
 
-A single, standard frontend project layout at the repo root — no `frontend`/`backend`/`mobile`
-split:
-
 ```
-src/            React app (components, pages, routes, styles, services)
-public/         Static assets served as-is (favicon, manifest, logo)
-index.html      Vite entry HTML
-db.json         json-server's database file (the mock API)
-vite.config.js  Vite + Vitest config
+src/app/          Routes (Next.js file-based routing) — one folder per URL, page.jsx per route
+src/components/   Shared, cross-route components (Navbar, form inputs, etc.)
+src/services/     The localStorage-backed character store + static rule data
+src/styles/       Global styled-components styles (fonts, base CSS)
+src/lib/          Framework plumbing (styled-components SSR registry)
+public/           Static assets served as-is (favicon, manifest, fonts, logo)
 ```
 
 ## Running locally
 
-Two terminals — the app expects the mock API on `http://localhost:3004`.
-
 ```bash
 npm install
-
-npm run mock-api    # terminal 1: json-server on http://localhost:3004
-npm run dev          # terminal 2: vite dev server on http://localhost:3040
+npm run dev
 ```
 
-Then open http://localhost:3040. Characters you add are written to `db.json`.
+Then open http://localhost:3000 (or whatever port `next dev` prints).
 
 ## Scripts
 
 | Script | What it does |
 | --- | --- |
-| `npm run dev` / `npm start` | Start the Vite dev server with hot reload |
-| `npm run mock-api` | Start the json-server mock API on port 3004 (reads/writes `db.json`) |
-| `npm run build` | Production build, output to `build/` |
-| `npm run preview` | Serve the production build locally |
+| `npm run dev` | Start the Next.js dev server with hot reload |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build locally (run `build` first) |
 | `npm test` | Run the Vitest test suite once |
 | `npm run test:watch` | Run the test suite in watch mode |
-| `npm run deploy` | Build and publish `build/` to GitHub Pages (`gh-pages`) |
 
 ## Deployment
 
-The app is configured to deploy to GitHub Pages via `npm run deploy` (see the `homepage` field in
-`package.json`). Because it uses `HashRouter`, the built static files work correctly on GitHub
-Pages without any server-side rewrite rules. The mock API is local-only and isn't part of that
-deployment — swap `src/services/api.js`'s `url` for a real API if you need the deployed app to
-persist characters somewhere.
+Deploys to [Vercel](https://vercel.com/) with zero configuration — it's a standard Next.js app, so
+`vercel` (or the Vercel GitHub integration) detects the framework and handles the build
+automatically. Since there's no backend, there's nothing else to provision.

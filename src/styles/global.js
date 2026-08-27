@@ -1,48 +1,31 @@
 import { createGlobalStyle } from 'styled-components';
 
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-
-import MilfordCondensedEOT from '../assets/fonts/milford-condensed/milford-condensed.eot';
-import MilfordCondensedWOFF from '../assets/fonts/milford-condensed/milford-condensed.woff';
-import MilfordCondensedTTF from '../assets/fonts/milford-condensed/milford-condensed.ttf';
-import MilfordCondensedSVG from '../assets/fonts/milford-condensed/milford-condensed.svg';
-
-import MilfordCondensedBoldEOT from '../assets/fonts/milford-condensed/milford-condensed-bold.eot';
-import MilfordCondensedBoldWOFF from '../assets/fonts/milford-condensed/milford-condensed-bold.woff';
-import MilfordCondensedBoldTTF from '../assets/fonts/milford-condensed/milford-condensed-bold.ttf';
-import MilfordCondensedBoldSVG from '../assets/fonts/milford-condensed/milford-condensed-bold.svg';
-
-import MicrogrammadBoldExtentedEOT from '../assets/fonts/microgrammad-bold-extented/microgrammad-bold-extented.eot';
-import MicrogrammadBoldExtentedWOFF from '../assets/fonts/microgrammad-bold-extented/microgrammad-bold-extented.woff';
-import MicrogrammadBoldExtentedTTF from '../assets/fonts/microgrammad-bold-extented/microgrammad-bold-extented.ttf';
-import MicrogrammadBoldExtentedSVG from '../assets/fonts/microgrammad-bold-extented/microgrammad-bold-extented.svg';
-
 export default createGlobalStyle`
   @font-face{
     font-family: Milford Condensed;
-    src: url(${MilfordCondensedEOT}),
-      url(${MilfordCondensedWOFF}) format('woff'),
-      url(${MilfordCondensedTTF}) format('truetype'),
-      url(${MilfordCondensedSVG}) format('svg');
+    src: url('/fonts/milford-condensed/milford-condensed.eot'),
+      url('/fonts/milford-condensed/milford-condensed.woff') format('woff'),
+      url('/fonts/milford-condensed/milford-condensed.ttf') format('truetype'),
+      url('/fonts/milford-condensed/milford-condensed.svg') format('svg');
     font-style: normal;
   }
 
   @font-face{
     font-family: Milford Condensed Bold;
-    src: url(${MilfordCondensedBoldEOT}),
-      url(${MilfordCondensedBoldWOFF}) format('woff'),
-      url(${MilfordCondensedBoldTTF}) format('truetype'),
-      url(${MilfordCondensedBoldSVG}) format('svg');
+    src: url('/fonts/milford-condensed/milford-condensed-bold.eot'),
+      url('/fonts/milford-condensed/milford-condensed-bold.woff') format('woff'),
+      url('/fonts/milford-condensed/milford-condensed-bold.ttf') format('truetype'),
+      url('/fonts/milford-condensed/milford-condensed-bold.svg') format('svg');
     font-weight: bold;
     font-style: normal;
   }
 
   @font-face {
     font-family: Microgrammad Bold Extented;
-    src: url(${MicrogrammadBoldExtentedEOT}),
-      url(${MicrogrammadBoldExtentedWOFF}) format('woff'),
-      url(${MicrogrammadBoldExtentedTTF}) format('truetype'),
-      url(${MicrogrammadBoldExtentedSVG}) format('svg');
+    src: url('/fonts/microgrammad-bold-extented/microgrammad-bold-extented.eot'),
+      url('/fonts/microgrammad-bold-extented/microgrammad-bold-extented.woff') format('woff'),
+      url('/fonts/microgrammad-bold-extented/microgrammad-bold-extented.ttf') format('truetype'),
+      url('/fonts/microgrammad-bold-extented/microgrammad-bold-extented.svg') format('svg');
     font-weight: bold;
     font-style: normal;
   }

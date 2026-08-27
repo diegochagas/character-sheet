@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import {
   getCharacters,
   postCharacter,
@@ -9,49 +9,45 @@ import {
   advantages,
   disadvantages,
 } from './api';
-import { url } from '../utils';
 
 beforeEach(() => {
-  vi.stubGlobal('fetch', vi.fn());
-});
-
-afterEach(() => {
-  vi.unstubAllGlobals();
+  window.localStorage.clear();
 });
 
 describe('getCharacters', () => {
-  it('fetches the characters collection and returns the parsed JSON', async () => {
-    const characters = [{ id: 1, name: 'Goku' }];
+  it('returns the seed characters when nothing is stored yet', () => {
+    const characters = getCharacters();
 
-    fetch.mockResolvedValue({ ok: true, json: () => Promise.resolve(characters) });
-
-    const result = await getCharacters();
-
-    expect(fetch).toHaveBeenCalledWith(`${url}/characters`, undefined);
-    expect(result).toEqual(characters);
+    expect(characters.length).toBeGreaterThan(0);
+    expect(characters.some(character => character.name === 'Goku')).toBe(
+      true
+    );
   });
 
-  it('throws when the request fails', async () => {
-    fetch.mockResolvedValue({ ok: false, status: 500 });
+  it('returns whatever was previously persisted', () => {
+    postCharacter({ name: 'Trunks' });
 
-    await expect(getCharacters()).rejects.toThrow('500');
+    const characters = getCharacters();
+
+    expect(characters.some(character => character.name === 'Trunks')).toBe(
+      true
+    );
   });
 });
 
 describe('postCharacter', () => {
-  it('posts a character to the collection as JSON', async () => {
-    const character = { name: 'Goku' };
+  it('assigns an id one greater than the current max and persists it', () => {
+    const created = postCharacter({ name: 'Trunks' });
 
-    fetch.mockResolvedValue({ ok: true, json: () => Promise.resolve(character) });
+    expect(created.id).toBe(7); // seed data's highest id is 6
+    expect(getCharacters()).toContainEqual(created);
+  });
 
-    const result = await postCharacter(character);
+  it('keeps assigning increasing ids across repeated calls', () => {
+    const first = postCharacter({ name: 'A' });
+    const second = postCharacter({ name: 'B' });
 
-    expect(fetch).toHaveBeenCalledWith(`${url}/characters`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(character),
-    });
-    expect(result).toEqual(character);
+    expect(second.id).toBe(first.id + 1);
   });
 });
 

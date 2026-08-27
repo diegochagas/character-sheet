@@ -2,26 +2,21 @@
   "name": "character-sheet",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://diegochagas.github.io/character-sheet",
   "type": "module",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "next": "^16.3.3",
     "prop-types": "^15.7.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.2",
     "styled-components": "^6.5.3"
   },
   "scripts": {
-    "dev": "vite",
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "mock-api": "json-server --watch db.json --port 3004",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test:watch": "vitest"
   },
   "browserslist": [
     ">0.2%",
@@ -42,11 +37,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "gh-pages": "^6.3.0",
-    "json-server": "^0.16.3",
     "jsdom": "^30.0.1",
     "prettier": "^1.19.1",
-    "vite": "^7.3.6",
     "vitest": "^4.1.11"
   }
 }

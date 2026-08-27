@@ -1,16 +1,11 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import Navbar from '.';
 
 describe('Navbar', () => {
   it('renders a link to every section of the app', () => {
-    render(
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>
-    );
+    render(<Navbar />);
 
     [
       ['Character Battle', '/'],

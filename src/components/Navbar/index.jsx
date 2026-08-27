@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 // import { Container } from './styles';
 
@@ -15,7 +15,7 @@ function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-light">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" href="/">
           Character Battle
         </Link>
 
@@ -34,37 +34,37 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav ml-auto mt-2">
             <li className="nav-item">
-              <Link className="nav-link" to="/rules">
+              <Link className="nav-link" href="/rules">
                 Rules
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/add-character">
+              <Link className="nav-link" href="/add-character">
                 Add character
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/edit-character">
+              <Link className="nav-link" href="/edit-character">
                 Edit character
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/delete-character">
+              <Link className="nav-link" href="/delete-character">
                 Delete character
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/character-sheet">
+              <Link className="nav-link" href="/character-sheet">
                 Character sheet
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/advantages">
+              <Link className="nav-link" href="/advantages">
                 Advantages
               </Link>
             </li>
