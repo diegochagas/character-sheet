@@ -10,14 +10,6 @@ https://en.wikipedia.org/wiki/3D%26T
 The character sheet UI itself is in Portuguese, matching the original game material; this README
 is in English.
 
-## What's here
-
-| Folder | What it is |
-| --- | --- |
-| [`frontend/`](frontend) | The React app: character sheet, character creation, and the battle simulator |
-| [`backend/`](backend) | A [json-server](https://github.com/typicode/json-server) mock API that persists characters to `db.json` |
-| [`mobile/`](mobile) | Empty placeholder for a future mobile client — not implemented yet |
-
 ## Features
 
 - **Home / Battle** (`/`) — pick two saved characters and run an automated fight between them,
@@ -34,57 +26,59 @@ is in English.
 ## Tech stack
 
 - [React 19](https://react.dev/) with hooks-based function components
-- [Vite](https://vitejs.dev/) for the dev server and production build (frontend only — the app
-  used to run on Create React App, which is now deprecated)
+- [Vite](https://vitejs.dev/) for the dev server and production build (the app used to run on
+  Create React App, which is now deprecated)
 - [react-router-dom v7](https://reactrouter.com/) (`HashRouter`, so the built app works as static
   files on GitHub Pages without server-side routing)
 - [styled-components v6](https://styled-components.com/) for component styling, plus Bootstrap 4
   for base layout/utility classes
-- [json-server](https://github.com/typicode/json-server) as a zero-code mock REST API for the
-  backend
+- [json-server](https://github.com/typicode/json-server) as a zero-code mock REST API, backed by
+  `db.json`
 - [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/react/) for
   unit tests
 
-## Running locally
+## Project structure
 
-You need two terminals — the frontend expects the backend on `http://localhost:3004`.
+A single, standard frontend project layout at the repo root — no `frontend`/`backend`/`mobile`
+split:
 
-```bash
-# 1. backend (mock API), from backend/
-npm install
-npm start          # json-server on http://localhost:3004
-
-# 2. frontend, from frontend/
-npm install
-npm run dev         # vite dev server on http://localhost:3040
+```
+src/            React app (components, pages, routes, styles, services)
+public/         Static assets served as-is (favicon, manifest, logo)
+index.html      Vite entry HTML
+db.json         json-server's database file (the mock API)
+vite.config.js  Vite + Vitest config
 ```
 
-Then open http://localhost:3040. Characters you add are written to `backend/db.json`.
+## Running locally
 
-## Frontend scripts
+Two terminals — the app expects the mock API on `http://localhost:3004`.
 
-Run from `frontend/`:
+```bash
+npm install
+
+npm run mock-api    # terminal 1: json-server on http://localhost:3004
+npm run dev          # terminal 2: vite dev server on http://localhost:3040
+```
+
+Then open http://localhost:3040. Characters you add are written to `db.json`.
+
+## Scripts
 
 | Script | What it does |
 | --- | --- |
 | `npm run dev` / `npm start` | Start the Vite dev server with hot reload |
-| `npm run build` | Production build, output to `frontend/build` |
+| `npm run mock-api` | Start the json-server mock API on port 3004 (reads/writes `db.json`) |
+| `npm run build` | Production build, output to `build/` |
 | `npm run preview` | Serve the production build locally |
 | `npm test` | Run the Vitest test suite once |
 | `npm run test:watch` | Run the test suite in watch mode |
-| `npm run deploy` | Build and publish `frontend/build` to GitHub Pages (`gh-pages`) |
-
-## Backend
-
-`backend/db.json` is the database json-server reads/writes directly — it ships with a handful of
-sample characters. `npm start` in `backend/` runs `json-server --watch db.json --port 3004`,
-exposing a REST API at `/characters` (`GET`/`POST`, etc.) that the frontend's
-[`services/api.js`](frontend/src/services/api.js) talks to.
+| `npm run deploy` | Build and publish `build/` to GitHub Pages (`gh-pages`) |
 
 ## Deployment
 
-The frontend is configured to deploy to GitHub Pages via `npm run deploy` (see the `homepage`
-field in `frontend/package.json`). Because it uses `HashRouter`, the built static files work
-correctly on GitHub Pages without any server-side rewrite rules. The mock backend is local-only
-and isn't part of that deployment — swap `services/api.js`'s `url` for a real API if you need the
-deployed app to persist characters somewhere.
+The app is configured to deploy to GitHub Pages via `npm run deploy` (see the `homepage` field in
+`package.json`). Because it uses `HashRouter`, the built static files work correctly on GitHub
+Pages without any server-side rewrite rules. The mock API is local-only and isn't part of that
+deployment — swap `src/services/api.js`'s `url` for a real API if you need the deployed app to
+persist characters somewhere.

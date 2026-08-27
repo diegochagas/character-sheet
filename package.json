@@ -1,5 +1,5 @@
 {
-  "name": "character_sheet",
+  "name": "character-sheet",
   "version": "0.1.0",
   "private": true,
   "homepage": "http://diegochagas.github.io/character-sheet",
@@ -20,6 +20,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "mock-api": "json-server --watch db.json --port 3004",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -42,6 +43,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "gh-pages": "^6.3.0",
+    "json-server": "^0.16.3",
     "jsdom": "^30.0.1",
     "prettier": "^1.19.1",
     "vite": "^7.3.6",
